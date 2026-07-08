@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install HeroUI Pro skill to the local agent skills directory
+# Install Design ProMax skill to the local agent skills directory
 # Usage: ./install.sh [skills_dir]
 
 SKILLS_DIR="${1:-$HOME/.agents/skills}"
@@ -27,3 +27,5 @@ echo "✅ $SKILL_NAME installed to $SKILLS_DIR/$SKILL_NAME"
 echo ""
 echo "The skill will now be available to your coding agent."
 echo "Try asking: 'Build me a pricing page with HeroUI'"
+echo ""
+echo "Available commands: build-ui, component-research, design-audit"

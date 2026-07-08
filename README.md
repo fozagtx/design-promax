@@ -7,7 +7,7 @@ A self-contained agent skill containing **462 real source files** from HeroUI Pr
 ## What This Does
 
 When installed as a skill, your coding agent will:
-- Read **real source code** from `sources/` — not markdown summaries
+- Read **real source code** from `skill/sources/` — not markdown summaries
 - Use HeroUI (`@heroui/react`) components with verified patterns
 - Apply semantic design tokens from actual component usage
 - Pick the right icons by reading real icon imports
@@ -16,28 +16,47 @@ When installed as a skill, your coding agent will:
 ## Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/hero-ui-pro.git ~/.agents/skills/hero-ui-pro
+git clone https://github.com/fozagtx/design-promax.git
+cd design-promax
+./install.sh -y
 # or
-./install.sh
+./install-custom.sh
 ```
 
 ## Structure
 
 ```
-hero-ui-pro/
+design-promax/
 ├── SKILL.md              # Main skill — lookup table + core patterns
 ├── README.md             # This file
 ├── CLAUDE.md             # Agent context
 ├── LICENSE               # MIT
-├── install.sh            # One-command install
+├── install.sh            # Standard install
+├── install-custom.sh     # Custom location installer
 ├── .gitignore
-└── sources/              # 462 REAL source files (no hallucination)
-    ├── FILE_INDEX.md     # Complete file listing
-    ├── AI/               # 79 files — chat, prompts, messages, sidebars
-    ├── Application/      # 227 files — auth, cards, forms, tables, nav, etc.
-    ├── Charts/           # 7 files — bar, donut, line, KPI stats
-    ├── E-commerce/       # 94 files — products, filters, checkout, reviews
-    └── Marketing/        # 55 files — pricing, hero, FAQ, banners, footers
+├── ARTICLE.md            # Article about the skill
+├── SUBMISSION.md         # Submission info
+├── skill/
+│   ├── SKILL.md          # Main skill entry point
+│   └── sources/          # 462 REAL source files (no hallucination)
+│       ├── FILE_INDEX.md # Complete file listing
+│       ├── AI/           # 79 files — chat, prompts, messages, sidebars
+│       ├── Application/  # 227 files — auth, cards, forms, tables, nav, etc.
+│       ├── Charts/       # 7 files — bar, donut, line, KPI stats
+│       ├── E-commerce/   # 94 files — products, filters, checkout, reviews
+│       └── Marketing/    # 55 files — pricing, hero, FAQ, banners, footers
+├── agents/               # Agent role definitions
+│   ├── ui-architect.md
+│   ├── component-analyst.md
+│   └── design-systems-coach.md
+├── commands/             # Command definitions
+│   ├── build-ui.md
+│   ├── component-research.md
+│   └── design-audit.md
+├── rules/                # Design integrity rules
+│   └── design-integrity.md
+└── tests/                # Structure validation
+    └── validate_structure.sh
 ```
 
 ## Component Categories
