@@ -1,58 +1,76 @@
 ---
 name: design-promax
 description: >-
-  Premium React UI via HeroUI Pro real sources + machine route registry.
-  MUST load ROUTE_REGISTRY.json first to pick 2–4 template files by intent
-  (landing, auth, dashboard, chat, commerce, charts, forms, wallet/dapp).
-  Prevents random browsing of 400+ files. Use for any polished React/UI work.
-  Triggers: design-promax, HeroUI, route templates, which component, build UI.
+  Premium React UI via HeroUI Pro sources + route registry + style presets.
+  ALWAYS apply clean_product feel (Vault OTP quality: action cards, solar icons,
+  bordered inputs, radius-full buttons) after routing intent to 2–5 template files.
+  Surfaces A–H (landing, auth, dashboard, chat, commerce, charts, forms, wallet/dapp).
+  Triggers: design-promax, HeroUI, that card feel, Vault OTP style, route templates.
 ---
 
 # Design ProMax
 
 Real HeroUI Pro sources. **Zero invented classNames.**  
-**Harness architecture:** [ARCHITECTURE.md](ARCHITECTURE.md)
+**Two axes, always:**
+
+1. **Route** — *what* screen (landing / auth / vault / …) → `ROUTE_REGISTRY.json`  
+2. **Style** — *how it feels* → `STYLE_PRESETS.json` (**default: `clean_product`**)
+
+That second axis is what keeps quality at the **Vault OTP** level: soft cards, icon tiles, chips, clear gate states, human copy.
 
 ## Protocol (mandatory)
 
 ```
-1. Read ROUTE_REGISTRY.json
-2. Match user intent → surface (A–H) + route id
-   - Use keyword_index first; else surfaces.*.keywords
-3. Read ONLY that route’s primary[] files under sources/
-   - Cap: protocol.max_primary_reads (4)
-4. Optionally secondary[] if an atom is missing
-5. Adapt patterns; enforce quality_bar[]
-6. Never dump FILE_INDEX or eng architecture into the product UI
+1. ROUTE_REGISTRY.json  → surface A–H + route id (keyword_index)
+2. STYLE_PRESETS.json   → default clean_product
+   - wallet/dapp (H) → clean_product LOCKED
+   - pure marketing landing → marketing_campaign (+ still card rules)
+   - dense tables/analytics → dense_admin (+ still card tokens)
+3. Merge route.primary ∪ style.must_read (dedupe, cap 5 files)
+4. Read those files under sources/ ONLY
+5. Adapt using style.compose_recipe + quality_bar
+6. Never eng footnotes / random purple glass themes
 ```
-
-**Skip only** for one-line CSS tweaks.
 
 | File | Role |
 |------|------|
-| [ROUTE_REGISTRY.json](ROUTE_REGISTRY.json) | **Source of truth** for routes (machine) |
-| [ROUTING.md](ROUTING.md) | Human detail / examples |
+| [ROUTE_REGISTRY.json](ROUTE_REGISTRY.json) | What to build (exact paths) |
+| [STYLE_PRESETS.json](STYLE_PRESETS.json) | How it should feel |
+| [ROUTING.md](ROUTING.md) | Human router narrative |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Harness contract |
-| [sources/FILE_INDEX.md](sources/FILE_INDEX.md) | Full inventory (do not browse first) |
+| [sources/](sources/) | Real code |
 
-### Quick keyword → route
+### clean_product feel (always preferred)
 
-| Intent | Route key |
-|--------|-----------|
+| Piece | Pattern |
+|-------|---------|
+| Cards | `border-small border-default-200 shadow-small` + `bg-content1` |
+| Feature tiles | **Action card**: icon in `bg-primary-50 border-primary-100` tile |
+| Buttons | `radius="full"`; primary CTA filled |
+| Inputs | `variant="bordered"` + solar `startContent` |
+| Chips | `size="sm" variant="flat"` for status |
+| Icons | `@iconify/react` **`solar:`** bold-duotone / linear |
+| Layout | `max-w-3xl mx-auto`, short hero, 3 action cards, gate card, content cards |
+| Copy | Human only — no ciphertext/Polybase/contract footers |
+
+Must-read for that feel:  
+`Application/cards (20)__action-card.tsx` · `authentication (24)__App.tsx` · `security-settings.tsx`
+
+### Keyword → route (quick)
+
+| Intent | Route |
+|--------|--------|
 | landing / hero | `A.landing` |
 | pricing | `A.pricing` |
 | login / signup | `B.login_signup` |
-| unlock / connect gate | `B.unlock_or_connect_gate` |
-| dashboard / sidebar | `C.sidebar_app` |
+| unlock / connect | `B.unlock_or_connect_gate` |
+| dashboard | `C.sidebar_app` |
 | settings | `C.settings` |
 | chat / AI | `D.full_chat` |
-| shop / products | `E.product_grid` |
-| checkout | `E.checkout` |
-| KPI / charts / table | `F.*` |
-| wizard / onboarding | `G.multistep` |
-| wallet / vault / dapp / OTP | `H.vault_or_dapp_shell` |
-
-Paths in the registry are relative to `sources/`.
+| shop / checkout | `E.product_grid` / `E.checkout` |
+| KPI / charts | `F.*` |
+| wizard | `G.multistep` |
+| wallet / vault / OTP / dapp | `H.vault_or_dapp_shell` + **clean_product locked** |
 
 ---
 
@@ -61,38 +79,18 @@ Paths in the registry are relative to `sources/`.
 **React 18 + `@heroui/react` v2 + Tailwind 3 + Framer Motion + `@iconify/react`**
 
 ```js
-import { Button, Input, Card, Chip, Progress, cn, /* … */ } from "@heroui/react";
+import { Button, Input, Card, CardBody, Chip, Progress, cn } from "@heroui/react";
 import { Icon } from "@iconify/react";
-// icons: solar:… or gravity-ui:… (copy names from opened sources)
+// solar:shield-keyhole-bold-duotone, solar:wallet-bold-duotone, …
 ```
-
----
-
-## Core patterns (from sources)
-
-```js
-"use client";
-import React from "react";
-import { cn } from "@heroui/react";
-
-const X = React.forwardRef(({ className, children, ...props }, ref) => (
-  <div ref={ref} className={cn("base", className)} {...props}>{children}</div>
-));
-X.displayName = "X";
-export default X;
-```
-
-**Tokens:** `bg-content1`, `text-default-500/900`, `border-default-200`, `shadow-small`, `rounded-large` / `rounded-medium`, `text-small` / `text-tiny`  
-**Icons:** only from opened sources (`solar:` / `gravity-ui:`)  
-**Copy:** product language only — no ciphertext/Polybase/calldata footers
 
 ---
 
 ## Rules
 
-1. Route via `ROUTE_REGISTRY.json` before multi-file UI  
-2. Max ~4 primary source reads per screen  
-3. `forwardRef` + `cn` + `displayName` for reusable pieces  
-4. Never hallucinate icons / HeroUI APIs  
-5. Never open entire category folders “to be safe”  
-6. Surface **H** (wallet/dapp) is a **compose pack** — no Wallet/ folder  
+1. **Route + style** before writing multi-file UI  
+2. Cap **5** source reads (route + style merge)  
+3. Prefer **clean_product** unless user wants campaign landing or dense admin  
+4. `forwardRef` + `cn` + `displayName` for reusable pieces  
+5. Never invent icons/APIs; never open whole category folders  
+6. Never put architecture notes in the product UI  

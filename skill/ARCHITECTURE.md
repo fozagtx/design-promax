@@ -4,7 +4,8 @@
 
 | Failure mode | Cause | Fix |
 |--------------|--------|-----|
-| Agent opens 20 random source files | Flat lookup table + huge FILE_INDEX | **Route registry** → max 4 primaries |
+| Agent opens 20 random source files | Flat lookup table + huge FILE_INDEX | **Route registry** → max 5 merged reads |
+| UI looks random across projects | No shared “feel” | **STYLE_PRESETS** default `clean_product` |
 | Wrong template for the product | Keyword match only on category (AI/App/Marketing) | **Surface A–H** + **route id** |
 | Glob paths that don’t resolve | `sidebar*.tsx` in docs | **Exact paths** in JSON |
 | Eng jargon in UI | No copy rule | Quality bar + surface H avoid list |
@@ -17,7 +18,8 @@
 ┌─────────────────────────────────────────────────────────┐
 │  SKILL.md          Trigger + short protocol (always)    │
 ├─────────────────────────────────────────────────────────┤
-│  ROUTE_REGISTRY.json   Machine routes (source of truth) │
+│  ROUTE_REGISTRY.json   Machine routes (what)             │
+│  STYLE_PRESETS.json    Feel/theme (how) — clean_product │
 │  ROUTING.md            Human narrative / examples       │
 │  ARCHITECTURE.md       This file — harness contract     │
 ├─────────────────────────────────────────────────────────┤
@@ -38,6 +40,10 @@ On UI work, load:
 
 Do **not** start by listing all of `sources/`.
 
+**Also load** `STYLE_PRESETS.json`. Default feel = **`clean_product`** (Vault OTP cards).
+Merge route primaries with `style.must_read` (cap 5). Surface **H** locks clean_product.
+See STYLE_PRESETS `compose_recipe` for the topbar → action cards → gate → content order.
+
 ### 2. Classify
 
 ```
@@ -53,24 +59,24 @@ Output a **route plan** (even if only internal):
 {
   "surface": "H",
   "route": "vault_or_dapp_shell",
-  "primary": ["…"],
-  "secondary": ["…"],
-  "compose_order": ["…"],
+  "style": "clean_product",
+  "files_to_read": ["… max 5 …"],
+  "compose_recipe": ["topbar", "hero", "3 action cards", "gate", "content"],
   "avoid": ["…"]
 }
 ```
 
 ### 3. Read
 
-- Read each path under `sources/` + `primary[]` (prefer `.tsx`)
-- Cap at `protocol.max_primary_reads` (4)
-- Open `secondary` only if primary missing a needed atom
+- Merge `route.primary` ∪ `style.must_read` (dedupe, prefer `.tsx`)
+- Cap at **5** files
+- Open `secondary` only if still missing an atom
 
 ### 4. Adapt
 
-- Copy structure, tokens, icon **names from opened files**
-- Map domain (e.g. wallet unlock) onto compose_order
-- Enforce `quality_bar[]`
+- Follow **style.compose_recipe** (Vault OTP layout order)
+- Copy structure, tokens, icon names from opened files
+- Enforce `quality_bar[]` + style `copy_rules`
 
 ### 5. Refuse
 
@@ -81,6 +87,7 @@ If asked to “use all components” or dump FILE_INDEX into one page: refuse, r
 | File | Consumer | Mutable |
 |------|----------|---------|
 | `ROUTE_REGISTRY.json` | Harness / scripts | Yes (versioned) |
+| `STYLE_PRESETS.json` | Feel / Vault quality | Yes |
 | `ROUTING.md` | Humans / long reasoning | Yes |
 | `SKILL.md` | Skill trigger | Yes (keep thin) |
 | `sources/**` | Pattern library | Rarely |
@@ -97,6 +104,7 @@ design-promax/
     ROUTING.md
     ARCHITECTURE.md
     ROUTE_REGISTRY.json
+    STYLE_PRESETS.json
     sources/
 ```
 

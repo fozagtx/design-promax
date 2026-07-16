@@ -36,6 +36,7 @@ check "skill/SKILL.md" "skill/SKILL.md"
 check "skill/ROUTE_REGISTRY.json" "skill/ROUTE_REGISTRY.json"
 check "skill/ROUTING.md" "skill/ROUTING.md"
 check "skill/ARCHITECTURE.md" "skill/ARCHITECTURE.md"
+check "skill/STYLE_PRESETS.json" "skill/STYLE_PRESETS.json"
 check "skill/sources/" "skill/sources"
 check "scripts/validate-routes.mjs" "scripts/validate-routes.mjs"
 

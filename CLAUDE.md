@@ -17,11 +17,12 @@ scripts/validate-routes.mjs → CI: registry paths must exist
 ## How Agents Use This
 
 1. Load `skill/SKILL.md`
-2. Load `skill/ROUTE_REGISTRY.json`
-3. Match intent → `surface` + `route` (use `keyword_index`)
-4. Read **only** `primary[]` paths under `skill/sources/` (max 4)
-5. Adapt real code — never invent classNames / icons
-6. Enforce `quality_bar` (human copy, no eng UI footnotes)
+2. Load `skill/ROUTE_REGISTRY.json` + `skill/STYLE_PRESETS.json`
+3. Match intent → `surface` + `route` (`keyword_index`)
+4. Style → default **`clean_product`** (locked for wallet/dapp H)
+5. Merge route primaries + style must_read (max **5** files under `sources/`)
+6. Adapt using compose_recipe — cards, solar icons, human copy
+7. Enforce `quality_bar` (no eng UI footnotes)
 
 **Do not** start from `FILE_INDEX.md` or open an entire category folder.
 

@@ -52,16 +52,16 @@ design-promax/
 └── tests/validate_structure.sh
 ```
 
-## Template routing (why quality stays high)
+## Template routing + style (Vault OTP quality)
 
 Agents must **not** browse 400+ files at random. They:
 
-1. Load `skill/ROUTE_REGISTRY.json`
-2. Match intent → surface (A–H) + route
-3. Read only `primary[]` (≤4 files)
-4. Adapt real patterns + Iconify `solar:` icons
+1. Load `skill/ROUTE_REGISTRY.json` → **what** screen (A–H)
+2. Load `skill/STYLE_PRESETS.json` → **how it feels** (default **`clean_product`**)
+3. Merge route files + style must-reads (≤5 total)
+4. Adapt real patterns: action cards, solar icons, radius-full buttons, human copy
 
-Wallet/crypto UIs use surface **H** (compose: auth + action-card + security-settings).
+Wallet/crypto UIs use surface **H** + locked **clean_product** (the Vault OTP card feel).
 
 ```bash
 node scripts/validate-routes.mjs
