@@ -33,7 +33,25 @@ check "install-custom.sh" "install-custom.sh"
 echo ""
 echo "--- skill/ Directory ---"
 check "skill/SKILL.md" "skill/SKILL.md"
+check "skill/ROUTE_REGISTRY.json" "skill/ROUTE_REGISTRY.json"
+check "skill/ROUTING.md" "skill/ROUTING.md"
+check "skill/ARCHITECTURE.md" "skill/ARCHITECTURE.md"
 check "skill/sources/" "skill/sources"
+check "scripts/validate-routes.mjs" "scripts/validate-routes.mjs"
+
+echo ""
+echo "--- Route registry paths ---"
+if command -v node >/dev/null 2>&1; then
+  if node scripts/validate-routes.mjs; then
+    echo "  ✅ ROUTE_REGISTRY.json paths"
+    PASS=$((PASS + 1))
+  else
+    echo "  ❌ ROUTE_REGISTRY.json paths"
+    FAIL=$((FAIL + 1))
+  fi
+else
+  echo "  ⚠️  node not available — skip path validation"
+fi
 
 echo ""
 echo "--- agents/ Directory ---"

@@ -27,36 +27,44 @@ cd design-promax
 
 ```
 design-promax/
-├── SKILL.md              # Main skill — lookup table + core patterns
-├── README.md             # This file
-├── CLAUDE.md             # Agent context
-├── LICENSE               # MIT
-├── install.sh            # Standard install
-├── install-custom.sh     # Custom location installer
-├── .gitignore
-├── ARTICLE.md            # Article about the skill
-├── SUBMISSION.md         # Submission info
+├── README.md
+├── CLAUDE.md             # Agent / harness context
+├── LICENSE
+├── install.sh
+├── install-custom.sh
 ├── skill/
-│   ├── SKILL.md          # Main skill entry point
-│   └── sources/          # 462 REAL source files (no hallucination)
-│       ├── FILE_INDEX.md # Complete file listing
-│       ├── AI/           # 79 files — chat, prompts, messages, sidebars
-│       ├── Application/  # 227 files — auth, cards, forms, tables, nav, etc.
-│       ├── Charts/       # 7 files — bar, donut, line, KPI stats
-│       ├── E-commerce/   # 94 files — products, filters, checkout, reviews
-│       └── Marketing/    # 55 files — pricing, hero, FAQ, banners, footers
-├── agents/               # Agent role definitions
-│   ├── ui-architect.md
-│   ├── component-analyst.md
-│   └── design-systems-coach.md
-├── commands/             # Command definitions
-│   ├── build-ui.md
-│   ├── component-research.md
-│   └── design-audit.md
-├── rules/                # Design integrity rules
-│   └── design-integrity.md
-└── tests/                # Structure validation
-    └── validate_structure.sh
+│   ├── SKILL.md              # Trigger + short protocol
+│   ├── ROUTE_REGISTRY.json   # Machine routes (source of truth)
+│   ├── ROUTING.md            # Human router narrative
+│   ├── ARCHITECTURE.md       # Harness architecture
+│   └── sources/              # 462 REAL source files
+│       ├── FILE_INDEX.md
+│       ├── AI/
+│       ├── Application/
+│       ├── Charts/
+│       ├── E-commerce/
+│       └── Marketing/
+├── scripts/
+│   └── validate-routes.mjs   # Ensures registry paths exist
+├── agents/
+├── commands/
+├── rules/
+└── tests/validate_structure.sh
+```
+
+## Template routing (why quality stays high)
+
+Agents must **not** browse 400+ files at random. They:
+
+1. Load `skill/ROUTE_REGISTRY.json`
+2. Match intent → surface (A–H) + route
+3. Read only `primary[]` (≤4 files)
+4. Adapt real patterns + Iconify `solar:` icons
+
+Wallet/crypto UIs use surface **H** (compose: auth + action-card + security-settings).
+
+```bash
+node scripts/validate-routes.mjs
 ```
 
 ## Component Categories

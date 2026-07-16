@@ -3,45 +3,50 @@
 ## About This Repo
 Self-contained agent skill for Design ProMax — **462 real source files** from a premium React UI design system. Agents read actual `.js`/`.tsx` code, not markdown summaries. Zero hallucination.
 
+## Harness architecture (v2)
+
+```
+skill/SKILL.md              → trigger + short protocol
+skill/ROUTE_REGISTRY.json   → machine routes (source of truth)
+skill/ROUTING.md            → human narrative
+skill/ARCHITECTURE.md       → harness contract
+skill/sources/**            → real HeroUI Pro patterns
+scripts/validate-routes.mjs → CI: registry paths must exist
+```
+
+## How Agents Use This
+
+1. Load `skill/SKILL.md`
+2. Load `skill/ROUTE_REGISTRY.json`
+3. Match intent → `surface` + `route` (use `keyword_index`)
+4. Read **only** `primary[]` paths under `skill/sources/` (max 4)
+5. Adapt real code — never invent classNames / icons
+6. Enforce `quality_bar` (human copy, no eng UI footnotes)
+
+**Do not** start from `FILE_INDEX.md` or open an entire category folder.
+
 ## Project Structure
 
 ```
 design-promax/
-├── .gitignore
-├── ARTICLE.md
-├── README.md
-├── LICENSE
-├── CLAUDE.md             # This file
-├── SUBMISSION.md
-├── install.sh
-├── install-custom.sh
 ├── skill/
-│   ├── SKILL.md          # Main skill — lookup table + core patterns
-│   └── sources/          # 462 REAL source files
-│       ├── AI/           # 79 files — chat, prompts, messages, sidebars
-│       ├── Application/  # 227 files — auth, cards, forms, tables, nav, etc.
-│       ├── Charts/       # 7 files — bar, donut, line, KPI stats
-│       ├── E-commerce/   # 94 files — products, filters, checkout, reviews
-│       └── Marketing/    # 55 files — pricing, hero, FAQ, banners, footers
-├── agents/               # Agent role definitions
-├── commands/             # Command definitions
-├── rules/                # Design integrity rules
-└── tests/                # Structure validation
+│   ├── SKILL.md
+│   ├── ROUTE_REGISTRY.json
+│   ├── ROUTING.md
+│   ├── ARCHITECTURE.md
+│   └── sources/
+├── agents/
+├── commands/
+├── rules/
+├── scripts/validate-routes.mjs
+└── tests/validate_structure.sh
 ```
 
-## How Agents Use This
-1. `skill/SKILL.md` triggers on any React UI request
-2. Agent reads the lookup table in `skill/SKILL.md` to find the right category
-3. Agent reads the actual source files from `skill/sources/{Category}/`
-4. Agent adapts real code — never hallucinates
-
 ## Key Rules
-1. Always `"use client"` directive
-2. Always `React.forwardRef` for reusable components
-3. Always `cn()` for class merging
-4. Always HeroUI semantic tokens — never raw Tailwind colors
-5. Always separate data from presentation
-6. Always `@iconify/react` with `solar:` or `gravity-ui:` prefix
-7. Always add `displayName` to forwarded components
-8. Always read the actual source file before writing code
-9. Never hallucinate icon names, classNames, or component APIs
+1. Route via registry before multi-file UI
+2. Always `"use client"` for interactive React
+3. Always `React.forwardRef` + `cn` + `displayName` for reusable pieces
+4. Always HeroUI semantic tokens
+5. Always `@iconify/react` with `solar:` or `gravity-ui:` from opened sources
+6. Never hallucinate icon names, classNames, or APIs
+7. Never put architecture notes (ciphertext, Polybase, etc.) in product UI
