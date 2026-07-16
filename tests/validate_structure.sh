@@ -37,6 +37,7 @@ check "skill/ROUTE_REGISTRY.json" "skill/ROUTE_REGISTRY.json"
 check "skill/ROUTING.md" "skill/ROUTING.md"
 check "skill/ARCHITECTURE.md" "skill/ARCHITECTURE.md"
 check "skill/STYLE_PRESETS.json" "skill/STYLE_PRESETS.json"
+check "skill/case-studies/vault-otp.md" "skill/case-studies/vault-otp.md"
 check "skill/sources/" "skill/sources"
 check "scripts/validate-routes.mjs" "scripts/validate-routes.mjs"
 

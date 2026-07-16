@@ -1,25 +1,26 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "design-promax-route-registry",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Machine-readable template router + style presets. Paths relative to skill/sources/. Always apply default style preset after routing.",
   "protocol": {
     "before_write_ui": [
-      "classify_surface_from_keywords",
+      "fast_keyword_index",
       "load_route_entry",
       "select_style_preset",
-      "merge_route_primary_with_style_must_read",
-      "read_merged_files_cap_5",
-      "adapt_patterns_never_hallucinate",
-      "apply_style_preset_compose_recipe",
-      "apply_quality_bar"
+      "efficient_merge_core_plus_one_shell",
+      "read_merged_files_cap_4",
+      "apply_button_matrix_and_compose_recipe",
+      "apply_quality_bar_and_case_study_if_clean_product"
     ],
-    "max_primary_reads": 5,
+    "max_primary_reads": 4,
     "prefer_extension": ".tsx",
     "sources_root": "sources",
     "style_presets_file": "STYLE_PRESETS.json",
     "default_style_preset": "clean_product",
-    "style_merge": "Union route.primary with style.must_read, prefer .tsx, preserve route files first, then style must_read not already included, hard cap 5. Secondary only if still missing atoms."
+    "style_merge": "Union route.primary with style.must_read, prefer .tsx, preserve route files first, then style must_read not already included, hard cap 5. Secondary only if still missing atoms.",
+    "case_studies_dir": "case-studies",
+    "efficient_merge": "IF style in (clean_product, trust_green, clean_product_compact): files = STYLE_PRESETS.efficient_read.clean_product_core (3). IF route needs shell (see shell_apps): append exactly one App.tsx. Cap 4. Surface H: core only (3). ELSE: style.must_read then at most one shell App. Cap 4."
   },
   "surfaces": {
     "A": {
@@ -554,6 +555,32 @@
     "vault": "H.vault_or_dapp_shell",
     "dapp": "H.vault_or_dapp_shell",
     "otp": "H.vault_or_dapp_shell",
-    "web3": "H.vault_or_dapp_shell"
+    "web3": "H.vault_or_dapp_shell",
+    "like vault": "H.vault_or_dapp_shell",
+    "vault otp": "H.vault_or_dapp_shell",
+    "same cards": "H.vault_or_dapp_shell",
+    "same style": "H.vault_or_dapp_shell",
+    "those buttons": "H.vault_or_dapp_shell",
+    "pill buttons": "H.vault_or_dapp_shell",
+    "authenticator": "H.vault_or_dapp_shell",
+    "2fa": "H.vault_or_dapp_shell"
+  },
+  "shell_apps": {
+    "D.full_chat": "AI/prompt-containers (11)__App.tsx",
+    "D.prompt_only": "AI/prompt-inputs (11)__App.tsx",
+    "D.playground": "AI/playgrounds (1)__App.tsx",
+    "C.sidebar_app": "Application/sidebars (19)__App.tsx",
+    "F.table": "Application/tables (1)__App.tsx",
+    "F.charts": "Charts/KPI-stats (9)__App.tsx",
+    "F.kpi_row": "Charts/KPI-stats (9)__App.tsx",
+    "E.checkout": "E-commerce/checkouts (4)__App.tsx",
+    "E.product_grid": "E-commerce/product-list (9)__App.tsx",
+    "A.landing": "Marketing/hero-sections (4)__App.tsx",
+    "A.pricing": "Marketing/pricing (8)__App.tsx",
+    "G.multistep": "Application/forms (1)__App.tsx",
+    "G.booking": "Application/calendar (3)__App.tsx",
+    "B.login_signup": null,
+    "B.unlock_or_connect_gate": null,
+    "H.vault_or_dapp_shell": null
   }
 }

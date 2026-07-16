@@ -1,96 +1,75 @@
 ---
 name: design-promax
 description: >-
-  Premium React UI via HeroUI Pro sources + route registry + style presets.
-  ALWAYS apply clean_product feel (Vault OTP quality: action cards, solar icons,
-  bordered inputs, radius-full buttons) after routing intent to 2–5 template files.
-  Surfaces A–H (landing, auth, dashboard, chat, commerce, charts, forms, wallet/dapp).
-  Triggers: design-promax, HeroUI, that card feel, Vault OTP style, route templates.
+  Premium React UI via HeroUI Pro + efficient dual-axis router (route × style).
+  Default style clean_product = Vault OTP case study (pill buttons, action cards,
+  solar icons, gate cards). Surfaces A–H; max 4 source reads (3 core + 1 shell).
+  Triggers: design-promax, HeroUI, Vault OTP style, those cards/buttons, route UI.
 ---
 
 # Design ProMax
 
-Real HeroUI Pro sources. **Zero invented classNames.**  
-**Two axes, always:**
+Real HeroUI sources. **Route × style. Cap 4 file reads.**  
+**Case study:** [case-studies/vault-otp.md](case-studies/vault-otp.md) — the quality bar people ask for.
 
-1. **Route** — *what* screen (landing / auth / vault / …) → `ROUTE_REGISTRY.json`  
-2. **Style** — *how it feels* → `STYLE_PRESETS.json` (**default: `clean_product`**)
-
-That second axis is what keeps quality at the **Vault OTP** level: soft cards, icon tiles, chips, clear gate states, human copy.
-
-## Protocol (mandatory)
+## Efficient protocol
 
 ```
-1. ROUTE_REGISTRY.json  → surface A–H + route id (keyword_index)
-2. STYLE_PRESETS.json   → default clean_product
-   - wallet/dapp (H) → clean_product LOCKED
-   - pure marketing landing → marketing_campaign (+ still card rules)
-   - dense tables/analytics → dense_admin (+ still card tokens)
-3. Merge route.primary ∪ style.must_read (dedupe, cap 5 files)
-4. Read those files under sources/ ONLY
-5. Adapt using style.compose_recipe + quality_bar
-6. Never eng footnotes / random purple glass themes
+1. keyword_index → surface.route          (ROUTE_REGISTRY.json)
+2. style → clean_product by default       (STYLE_PRESETS.json)
+   H wallet/dapp → clean_product|trust_green only
+3. efficient_merge:
+   core = action-card + authentication App + security-settings  (3)
+   + at most ONE shell App from shell_apps if needed (chat/sidebar/table/…)
+   H vault → core only (3). Cap 4.
+4. Apply button_matrix + compose_recipe from style (+ vault-otp case study)
+5. Build. Human copy. No eng footers.
 ```
 
 | File | Role |
 |------|------|
-| [ROUTE_REGISTRY.json](ROUTE_REGISTRY.json) | What to build (exact paths) |
-| [STYLE_PRESETS.json](STYLE_PRESETS.json) | How it should feel |
-| [ROUTING.md](ROUTING.md) | Human router narrative |
+| [ROUTE_REGISTRY.json](ROUTE_REGISTRY.json) | What screen |
+| [STYLE_PRESETS.json](STYLE_PRESETS.json) | Feel + **button_matrix** + flavors |
+| [case-studies/vault-otp.md](case-studies/vault-otp.md) | Full product reference |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Harness contract |
-| [sources/](sources/) | Real code |
 
-### clean_product feel (always preferred)
+### Button matrix (Vault OTP)
 
-| Piece | Pattern |
-|-------|---------|
-| Cards | `border-small border-default-200 shadow-small` + `bg-content1` |
-| Feature tiles | **Action card**: icon in `bg-primary-50 border-primary-100` tile |
-| Buttons | `radius="full"`; primary CTA filled |
-| Inputs | `variant="bordered"` + solar `startContent` |
-| Chips | `size="sm" variant="flat"` for status |
-| Icons | `@iconify/react` **`solar:`** bold-duotone / linear |
-| Layout | `max-w-3xl mx-auto`, short hero, 3 action cards, gate card, content cards |
-| Copy | Human only — no ciphertext/Polybase/contract footers |
+| Role | Props |
+|------|--------|
+| Primary | `color="primary" radius="full"` + solar bold icon |
+| Secondary | `variant="bordered" radius="full" size="sm"` + linear icon |
+| Danger | `color="danger" variant="flat" radius="full" size="sm"` |
+| Warning | `color="warning" radius="full"` |
+| Ghost | `variant="light" radius="full" size="sm"` |
 
-Must-read for that feel:  
-`Application/cards (20)__action-card.tsx` · `authentication (24)__App.tsx` · `security-settings.tsx`
+### Flavors (same family)
 
-### Keyword → route (quick)
+| Preset | Use |
+|--------|-----|
+| **clean_product** | Default product / dapp (Vault OTP) |
+| **clean_product_compact** | Mobile-tight; skip feature row |
+| **trust_green** | Finance/security; force green primary |
+| **marketing_campaign** | Landings only |
+| **dense_admin** | Tables / analytics |
+| **chat_soft** | Product chat (not purple marketing) |
 
-| Intent | Route |
-|--------|--------|
-| landing / hero | `A.landing` |
-| pricing | `A.pricing` |
-| login / signup | `B.login_signup` |
-| unlock / connect | `B.unlock_or_connect_gate` |
-| dashboard | `C.sidebar_app` |
-| settings | `C.settings` |
-| chat / AI | `D.full_chat` |
-| shop / checkout | `E.product_grid` / `E.checkout` |
-| KPI / charts | `F.*` |
-| wizard | `G.multistep` |
-| wallet / vault / OTP / dapp | `H.vault_or_dapp_shell` + **clean_product locked** |
+### Compose recipe (clean_product)
+
+Top bar → chips → hero → **3 ActionCards** → one gate card → form card → list cards → stop.
 
 ---
 
 ## Stack
 
-**React 18 + `@heroui/react` v2 + Tailwind 3 + Framer Motion + `@iconify/react`**
-
-```js
-import { Button, Input, Card, CardBody, Chip, Progress, cn } from "@heroui/react";
-import { Icon } from "@iconify/react";
-// solar:shield-keyhole-bold-duotone, solar:wallet-bold-duotone, …
-```
+React 18 + `@heroui/react` v2 + Tailwind 3 + Framer Motion + `@iconify/react` (`solar:`)
 
 ---
 
 ## Rules
 
-1. **Route + style** before writing multi-file UI  
-2. Cap **5** source reads (route + style merge)  
-3. Prefer **clean_product** unless user wants campaign landing or dense admin  
-4. `forwardRef` + `cn` + `displayName` for reusable pieces  
-5. Never invent icons/APIs; never open whole category folders  
-6. Never put architecture notes in the product UI  
+1. Dual-axis route + style before multi-file UI  
+2. Max **4** source reads (efficient merge)  
+3. Pill CTAs + action cards by default  
+4. Read vault-otp case study when user wants “that feel”  
+5. Never invent icons; never eng jargon in UI  

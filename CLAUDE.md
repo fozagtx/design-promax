@@ -6,12 +6,13 @@ Self-contained agent skill for Design ProMax — **462 real source files** from 
 ## Harness architecture (v2)
 
 ```
-skill/SKILL.md              → trigger + short protocol
-skill/ROUTE_REGISTRY.json   → machine routes (source of truth)
-skill/ROUTING.md            → human narrative
-skill/ARCHITECTURE.md       → harness contract
-skill/sources/**            → real HeroUI Pro patterns
-scripts/validate-routes.mjs → CI: registry paths must exist
+skill/SKILL.md                  → trigger + efficient protocol
+skill/ROUTE_REGISTRY.json       → what screen (A–H)
+skill/STYLE_PRESETS.json        → how it feels + button_matrix
+skill/case-studies/vault-otp.md → canonical product quality
+skill/ROUTING.md / ARCHITECTURE.md
+skill/sources/**
+scripts/validate-routes.mjs
 ```
 
 ## How Agents Use This
@@ -19,10 +20,10 @@ scripts/validate-routes.mjs → CI: registry paths must exist
 1. Load `skill/SKILL.md`
 2. Load `skill/ROUTE_REGISTRY.json` + `skill/STYLE_PRESETS.json`
 3. Match intent → `surface` + `route` (`keyword_index`)
-4. Style → default **`clean_product`** (locked for wallet/dapp H)
-5. Merge route primaries + style must_read (max **5** files under `sources/`)
-6. Adapt using compose_recipe — cards, solar icons, human copy
-7. Enforce `quality_bar` (no eng UI footnotes)
+4. Style → default **`clean_product`** (Vault OTP case study; locked for H)
+5. Efficient merge: 3 core files (+ 1 shell App if needed), max **4**
+6. Apply **button_matrix** (pill primary / bordered secondary / flat danger)
+7. Adapt compose_recipe; human copy only
 
 **Do not** start from `FILE_INDEX.md` or open an entire category folder.
 
