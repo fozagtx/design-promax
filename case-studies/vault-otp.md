@@ -3,9 +3,9 @@
 **Status:** Canonical product UI for Design ProMax **`clean_product`** style.  
 **Surface:** H (`wallet_dapp` / vault_or_dapp_shell)  
 **Style:** `clean_product` (locked)  
-**Repo (example):** Monad Vault OTP — Astro + React + HeroUI v2 + Iconify Solar  
+**Repo (example):** Monad Vault OTP - Astro + React + HeroUI v2 + Iconify Solar  
 
-When the user says “like Vault OTP”, “those cards”, “that button feel”, or “same style as before” → **replay this case study**, not a random marketing theme.
+When the user says "like Vault OTP", "those cards", "that button feel", or "same style as before" → **replay this case study**, not a random marketing theme.
 
 ---
 
@@ -22,7 +22,7 @@ When the user says “like Vault OTP”, “those cards”, “that button feel�
 | **Buttons** | Almost all `radius="full"`; clear primary / bordered / flat danger / light |
 | **Icons** | Solar bold-duotone for tiles; linear for small actions |
 | **Color** | Soft green primary (`#0F8A52` family); light zinc background |
-| **Copy** | Human. No “ciphertext / Polybase / on-chain storage” footers |
+| **Copy** | Human. No "ciphertext / Polybase / on-chain storage" footers |
 
 ---
 
@@ -31,12 +31,12 @@ When the user says “like Vault OTP”, “those cards”, “that button feel�
 | Role | HeroUI props | Example label |
 |------|----------------|---------------|
 | **Primary CTA** | `color="primary" radius="full"` + optional `startContent` bold solar icon | Connect wallet, Sign to unlock, Encrypt & store |
-| **Primary loading** | same + `isLoading` — drop startContent while loading | Confirm in wallet… |
+| **Primary loading** | same + `isLoading` - drop startContent while loading | Confirm in wallet… |
 | **Secondary** | `variant="bordered" radius="full" size="sm"` + linear icon | Copy, Refresh |
 | **Danger** | `color="danger" variant="flat" radius="full" size="sm"` + trash linear | Delete |
 | **Warning action** | `color="warning" radius="full"` or `variant="flat"` | Switch network |
 | **Ghost / light** | `variant="light" radius="full" size="sm"` | Disconnect |
-| **Icon-leading** | Always `startContent={<Icon icon="solar:…" width={16\|18} />}` | — |
+| **Icon-leading** | Always `startContent={<Icon icon="solar:…" width={16\|18} />}` | none |
 
 **Rules:**
 - Prefer **full pills** (`radius="full"`) over default medium radius for product CTAs  
@@ -79,14 +79,14 @@ Source library: `@iconify/react` → https://icon-sets.iconify.design/solar/
 
 ```
 1. Top bar (logo tile + title + ConnectButton cluster)
-2. Status chips (2–3 max)
+2. Status chips (2-3 max)
 3. Hero title + one lede
 4. Three ActionCards
 5. Exactly one gate card for current state
 6. Main form card (if unlocked)
 7. Section header + list of content cards / empty card
 8. Error card if needed
-9. STOP — no tech footer
+9. STOP - no tech footer
 ```
 
 ---
@@ -109,7 +109,7 @@ Optional 4th: `Application/navbars (3)__App.tsx` if you need a denser top nav.
 // tailwind heroui theme sketch
 primary.DEFAULT = "#0F8A52"
 background = "#F4F4F5"
-// soft radial green washes on body — never full-page purple AI gradient
+// soft radial green washes on body - never full-page purple AI gradient
 ```
 
 Fonts: **IBM Plex Sans** + **IBM Plex Mono** for codes/addresses.

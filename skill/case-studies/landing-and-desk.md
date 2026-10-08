@@ -5,7 +5,7 @@
 **Styles:** `marketing_campaign` on `/` · `clean_product` on `/desk`  
 **Theme:** Any (Default, Brutalism, Glass, Mouve, or product palette). Theme retokens. It does not collapse the split.
 
-When the user says “landing and dashboard”, “homepage and app”, “hero + how it works + the actual tool”, or hates a jammed one-pager → **replay this**, not Vault OTP stacked on a marketing page.
+When the user says "landing and dashboard", "homepage and app", "hero + how it works + the actual tool", or hates a jammed one-pager → **replay this**, not Vault OTP stacked on a marketing page.
 
 ---
 
@@ -15,7 +15,7 @@ When the user says “landing and dashboard”, “homepage and app”, “hero 
 |-------|-------------|
 | **Two routes** | `/` tells the story. `/desk` does the job. Distinct chrome. |
 | **Landing nav** | HeroUI `Navbar` from `basic-navbar.tsx`. Icon + **name only**. Links: **Features**, How it works, Questions. CTA is the product verb, not Connect. |
-| **Hero** | Clamp 40–64px, bold, tight tracking, **solid** foreground, **`text-balance`**, **no `<br />`**. The **full** locked job line. One lede. Two pills. |
+| **Hero** | Clamp 40-64px, bold, tight tracking, **solid** foreground, **`text-balance`**, **no `<br />`**. The **full** locked job line. One lede. Two pills. |
 | **Features** | `AI/features (1)__App.tsx` pattern: three **category** FeatureCards (what you already did / what it does / what it will not). Required. `#features`. |
 | **How it works** | Three **step** FeatureCards. `#how`. Not a substitute for Features. |
 | **Questions** | Accordion. Three human answers. |
@@ -54,7 +54,7 @@ From `Marketing/hero-sections (4)__App.tsx` take size and weight.
 **Keep:** `text-balance text-[clamp(40px,8vw,64px)] font-bold leading-[1.1] tracking-tighter text-foreground`  
 **Drop:** `bg-hero-section-title bg-clip-text text-transparent` and the white-to-gray fade.  
 **Drop:** `<br />` that parks three leftover words on line two.  
-**Drop:** shortening the locked line (“The agent missed the window.” / desk h1 “Claim the collateral”).
+**Drop:** shortening the locked line ("The agent missed the window." / desk h1 "Claim the collateral").
 
 Paste the **whole** job line. Use `text-balance` so it wraps as one headline. **Landing and desk use the same sentence.**
 
@@ -80,7 +80,7 @@ From `Marketing/footers (4)__App.tsx` take the layout (brand block + columns + b
 3. Wrong-network card only if connected on the wrong chain
 4. Form card if unlocked
 5. Session / status cards if work happened
-6. STOP — no features row, no how-it-works row, no marketing footer, no eng chips
+6. STOP - no features row, no how-it-works row, no marketing footer, no eng chips
 ```
 
 If there is **no** landing, fall back to `vault-otp.md` (chips + three ActionCards on the desk).
@@ -112,7 +112,7 @@ If there is **no** landing, fall back to `vault-otp.md` (chips + three ActionCar
 - Job subtitle under the logo  
 - Gradient-clipped hero that fades to unreadable  
 - Skinny homemade cards instead of FeatureCard / Navbar  
-- Coston2 / vault-address / Pre-flight chips as “status”  
+- Coston2 / vault-address / Pre-flight chips as "status"  
 - Fake ACME footer and newsletter  
 - Repeating how-it-works on the desk after it already lives on the landing  
 - Glass blobs / IBM Plex / motion wallpaper when the user asked for the primitives, not a theme costume  

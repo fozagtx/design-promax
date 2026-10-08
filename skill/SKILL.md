@@ -1,120 +1,92 @@
 ---
 name: design-promax
 description: >-
-  Premium React UI via HeroUI Pro + dual-axis router (route × style).
-  Default style clean_product = Vault OTP / GhostKeys. Product with a public
-  story AND a work surface MUST split landing `/` from desk `/desk` — never one
-  jammed page. Full locked job line on every page (`text-balance`, no chopped
-  `<br />`). Features is required and distinct from How it works. Read real
-  Navbar, FeatureCard, hero, footer sources. One Connect on the desk navbar only. Files: STYLE_PRESETS.json, ROUTE_REGISTRY.json,
-  case-studies/vault-otp.md, case-studies/landing-and-desk.md. Surfaces A–H.
-  Max 4 source reads. Triggers: design-promax, HeroUI, clean_product, Vault OTP,
-  GhostKeys, landing page, dashboard, those cards, those buttons, route UI.
+  Premium React UI via HeroUI Pro + triple-axis router (theme x route x style).
+  MUST ask which Pro theme first: Default | Brutalism | Glass | Mouve (unless
+  user already named one). Then clean_product compose (Vault OTP / GhostKeys)
+  + real Pro sources. Files: THEMES.json, STYLE_PRESETS.json, ROUTE_REGISTRY.json,
+  case-studies/vault-otp.md. Showcase packs: Map navigation, Pro AI chat,
+  Music player, Shopping experience. Saved profile: Burnt Editorial / Cleat look.
+  Dense preset: workstation_dense (trading desk, ledger, terminal, ops console).
+  Writes DESIGN.md contract into the project.
+  Triggers: design-promax, HeroUI, Brutalism, Glass, Mouve, Burnt Editorial,
+  Cleat style, black-white burnt orange, clean_product, Vault OTP, GhostKeys,
+  those cards, route UI, trading desk, order ledger, terminal, ops console,
+  workstation, DESIGN.md, design contract, designeer.
 ---
 
 # Design ProMax
 
-Real HeroUI Pro sources. **Route × style. Cap 4 file reads.**
+Real HeroUI Pro sources. Theme x route x style. Cap 4 source reads.
 
-## Where the files are (read this first)
+## Files (resolve relative to this SKILL.md)
 
-Agents install this skill in different layouts. **Resolve paths relative to this SKILL.md file:**
+Every file below exists in the skill. Check the same folder as SKILL.md first, then `skill/`. Never claim one is missing or locked behind npm without checking both.
 
-| File | Same folder as SKILL.md (flat install) | Nested repo layout |
-|------|------------------------------------------|--------------------|
-| Style presets | `STYLE_PRESETS.json` | `skill/STYLE_PRESETS.json` |
-| Route registry | `ROUTE_REGISTRY.json` | `skill/ROUTE_REGISTRY.json` |
-| Case study (desk) | `case-studies/vault-otp.md` | `skill/case-studies/vault-otp.md` |
-| Case study (landing + desk) | `case-studies/landing-and-desk.md` | `skill/case-studies/landing-and-desk.md` |
-| Routing guide | `ROUTING.md` | `skill/ROUTING.md` |
-| Architecture | `ARCHITECTURE.md` | `skill/ARCHITECTURE.md` |
-| HeroUI sources | `sources/` | `skill/sources/` |
+| File | Purpose |
+|------|---------|
+| `THEMES.json` + `themes.css` | Pro themes: Default, Brutalism, Glass, Mouve. Showcase packs. |
+| `STYLE_PRESETS.json` | Style ids: `clean_product` (default), `trust_green`, `clean_product_compact`, `marketing_campaign`, `dense_admin`, `workstation_dense`, `chat_soft` |
+| `ROUTE_REGISTRY.json` | Surfaces A-H, routes, keyword index, shell apps. Surface H = wallet / dapp / vault / OTP compose pack. |
+| `case-studies/vault-otp.md` | Layout recipe for GhostKeys / Vault OTP quality |
+| `case-studies/landing-and-desk.md` | Two-route product split |
+| `case-studies/burnt-editorial.md` | Saved profile: Cleat-class editorial landing + coherent desk |
+| `case-studies/workstation-dense.md` | Dense trading desk / ops console recipe (icon rail, nav column, KPI strip, ledger, inspector) |
+| `templates/DESIGN.md` | Project design contract template, written to the project root after the theme gate |
+| `REFERENCES.md` | Curated external references (designeer.xyz): galleries, icons, type, color, motion, allowed supplement atoms |
+| `ROUTING.md` | Human router guide |
+| `sources/` | Real HeroUI Pro code (read-only) |
 
-**If `case-studies/vault-otp.md` or `STYLE_PRESETS.json` is missing, the skill install is stale. Tell the user to re-run `./install.sh` from https://github.com/fozagtx/design-promax — do not invent clean_product.**
+If any of these are missing the install is stale: re-run `./install.sh` from https://github.com/fozagtx/design-promax. Do not invent them.
 
-### These names are real (do not claim they do not exist)
+## Theme gate (mandatory, do this first)
 
-- **Style id:** `clean_product` (default), also `trust_green`, `clean_product_compact`, `marketing_campaign`, `dense_admin`, `chat_soft`
-- **Case study path:** `case-studies/vault-otp.md` (desk / Vault OTP) and `case-studies/landing-and-desk.md` (split product)
-- **Surface H:** wallet / dapp / vault / OTP compose pack in `ROUTE_REGISTRY.json`
+Before loading routes, reading sources, or writing UI: ask which HeroUI Pro theme to use, unless the user already named one in the same message or asked for the saved Burnt Editorial / Cleat profile.
 
----
+> Which HeroUI Pro theme should we use?
+> **Default** / **Brutalism** / **Glass** / **Mouve**
 
-## Product split (mandatory — any theme)
+| Theme | Feel | `data-theme` | CSS import (after Pro CSS) |
+|-------|------|--------------|----------------------------|
+| **Default** | Stock HeroUI radii, shadows, type | `light` / `dark` | none |
+| **Brutalism** | Sharp, thick borders, Anton + Share Tech Mono, zero radius | `brutalism-light` / `brutalism-dark` | `@heroui-pro/react/themes/brutalism` |
+| **Glass** | Backdrop blur, translucent surfaces | `glass-light` / `glass-dark` | `@heroui-pro/react/themes/glass` |
+| **Mouve** | Mauve / warm-purple raised accents (official spelling Mouve) | `mouve-light` / `mouve-dark` | `@heroui-pro/react/themes/mouve` |
 
-If the product has a public story **and** a place to do the work, ship **two routes**. Do not jam them onto one page. Theme (Default / Brutalism / Glass / Mouve, or the product palette) only changes radii, shadows, blur, and accent. **The split and the primitives stay.**
+Rules:
+- If the project already has a `DESIGN.md` written by this skill, read it and skip the gate. Otherwise, after the user answers, write `DESIGN.md` to the project root from `templates/DESIGN.md`, filled from `THEMES.json` (typography, spacing, motion, states) and the chosen style preset.
+- Never silently default a Pro theme.
+- Copy `themes.css` into the project and set `data-theme` on `<html>` (or an ancestor). Import alone does nothing.
+- npm `@heroui-pro/react/themes/*` is optional, only if the user has a Pro v3 license.
+- Theme is independent of the `clean_product` recipe: structure stays, radii / shadows / accent follow the theme.
+- Saved profile exception: "Burnt Editorial", "Cleat look", or "black and white with burnt orange like Cleat" locks the direction with no theme gate. Read `case-studies/burnt-editorial.md` and apply it on every route.
 
-| Route | Surface | Style | Job |
-|-------|---------|-------|-----|
-| `/` landing | A marketing | `marketing_campaign` | Hero, **Features**, How it works, questions, footer. CTA opens the desk. |
-| `/desk` (or `/app`) | H wallet_dapp or C app | `clean_product` | Navbar + **the same full job line** + form. Work only. |
-
-Read **`case-studies/landing-and-desk.md`** whenever the user asks for a landing, a homepage, a dashboard, or “both”.
-
-### Primitives to copy (do not vibe-code substitutes)
-
-| Piece | Source (read this) | Adapt |
-|-------|--------------------|--------|
-| Landing nav | `Marketing/hero-sections (4)__basic-navbar.tsx` | Brand + **Features** + How it works + Questions. CTA = product verb → `/desk`. **No Connect. No Login.** |
-| Landing hero | `Marketing/hero-sections (4)__App.tsx` | Full locked job line as **one** `h1`. `text-balance text-[clamp(40px,8vw,64px)] font-bold tracking-tighter text-foreground`. **No `<br />`.** Two pills: product verb → desk, How it works → `#how`. |
-| Features | `AI/features (1)__App.tsx` + `AI/features (1)__feature-card.tsx` | **Required.** Three category FeatureCards (what you already did / what it does / what it will not do). Heading: Features. `#features`. Not the same as How it works. |
-| How it works | `AI/features (1)__feature-card.tsx` | Three **step** FeatureCards. Heading: How it works. `#how`. |
-| Questions | HeroUI `Accordion` (or `Marketing/faqs (4)__App.tsx`) | Three real questions. |
-| Landing footer | `Marketing/footers (4)__App.tsx` | Brand + one line + **two real columns** (Product, Help). Links include Features. |
-| Desk nav | `Application/navbars (3)__App.tsx` | Brand (links home) + **one** Connect on the right. |
-| Desk headline | same job line as landing | Full sentence, `text-balance`. Never a 3-word stub. |
-| Desk form / gates | `Application/authentication (24)__App.tsx` + `Application/cards (20)__action-card.tsx` | Form card. Wrong-network gate only. |
-
-### Hard bans (the failures this skill exists to stop)
-
-Do **not** do these in any theme:
-
-1. **One page that is both landing and desk** — hero + how-it-works + connect + form stacked together.
-2. **A second Connect** — landing has zero Connect. Desk has Connect **once**, in the navbar. Never a second “Connect a wallet” gate card with the same button.
-3. **Logo subtitle** — icon + name only. Never “Core Vault mint”, “Missed redeem”, or any job line beside the mark.
-4. **Faded hero type** — never `bg-hero-section-title bg-clip-text text-transparent` (headline dies into the page).
-5. **Engineering dump in the UI** — no chain-name chips, no truncated vault/contract addresses as chips, no “Pre-flight”, no executor-fee footnotes, no architecture notes, no “XRPL transaction hash” as the page headline.
-6. **Fake ACME chrome** — no newsletter block, no four columns of `#` links, no social icons to nowhere, no lorem footer.
-7. **How it works on the desk** — that section lives on the landing. Desk is the form.
-8. **Invented cards** — if the primitive is in `sources/`, read it and adapt. Do not draw a skinny Card and call it a hero.
-9. **Chopped hero** — never `<br />` a job line so the second line is three leftover words (“Claim the collateral.”). Never drop words from a locked job line (“the window” instead of “the payment window”).
-10. **Stub headlines on the desk** — never shorten the landing job line to “Finish the mint” / “Claim the collateral” on `/desk`. **Same full sentence on every page** that shows a hero. `text-balance`, no forced break.
-11. **Missing Features** — never ship a landing with only How it works. Features is its own section, from `AI/features (1)__App.tsx`, in the nav. How it works is the steps. Both.
-
-Connect copy on the desk: **Connect** (one word). Not “Connect MetaMask” repeated down the page.
-
-Landing CTA is the product verb (**Finish mint**, **Claim default**), not Connect.
-
-**Headline rule (strict):** If the product has a locked job line, paste it whole. Example: “The agent missed the payment window. Claim the collateral.” — one `h1`, `text-balance`, landing **and** desk.
-
----
-
-## Efficient protocol (mandatory)
+## Protocol (mandatory)
 
 ```
-1. Load STYLE_PRESETS.json + ROUTE_REGISTRY.json (see path table above)
-2. keyword_index → surface.route
-   - landing / homepage / hero / how it works / footer → A.landing + marketing_campaign
-     AND if the product also has work to do → also H desk. Two routes. Read landing-and-desk.md
-   - desk / dashboard / dapp / vault / connect → H or C + clean_product. No marketing hero as body.
-3. style → clean_product by default
-   - User says like Vault OTP / GhostKeys / those cards/buttons → clean_product + read case-studies/vault-otp.md
-   - Surface H → clean_product or trust_green only
-   - Surface A landing → marketing_campaign (never paste desk compose onto `/`)
-4. efficient_merge (cap 4 per route):
-   landing = Marketing/hero-sections (4)__App.tsx
-           + Marketing/hero-sections (4)__basic-navbar.tsx
-           + AI/features (1)__feature-card.tsx
-           + Marketing/footers (4)__App.tsx
-   desk    = Application/navbars (3)__App.tsx
-           + Application/authentication (24)__App.tsx
-           + Application/cards (20)__action-card.tsx
-5. Apply button_matrix + the compose recipe for THAT route
-6. Adapt colors to the product theme if user says so (structure stays)
+0. DESIGN.md in project? read it, skip gate. Else THEME GATE: ask Default | Brutalism | Glass | Mouve (skip if named), then write DESIGN.md
+   Burnt Editorial / Cleat named -> load case-studies/burnt-editorial.md instead
+   Otherwise load THEMES.json + themes.css. Copy themes.css into project. Set data-theme.
+1. Load STYLE_PRESETS.json + ROUTE_REGISTRY.json
+2. keyword_index -> surface.route (also match showcase packs if named)
+3. style -> clean_product by default
+   - "like Vault OTP / GhostKeys / those cards" -> clean_product + read case-studies/vault-otp.md
+   - Surface H -> clean_product or trust_green only
+   - Surface F with ledger / desk / terminal / console / order book / monitoring -> workstation_dense + read case-studies/workstation-dense.md (must_read 4, no pills)
+4. efficient_merge (cap 4):
+   core = sources/Application/cards (20)__action-card.tsx
+        + sources/Application/authentication (24)__App.tsx
+        + sources/Application/cards (20)__security-settings.tsx
+   + optional 1 shell App from registry shell_apps
+   Surface H: core only (3)
+   Showcase: prefer source_hints from THEMES.json showcase_packs
+5. Apply button_matrix + compose_recipe from clean_product,
+   then adapt radii / shadows / accent to the locked theme (Brutalism is not pill-everything)
+6. User already has brand colors: keep them unless theme is Mouve / Brutalism and they asked for the full Pro look
 7. Human copy only. No eng footnotes. No em dashes.
 ```
 
-### Button matrix (from case study)
+### Button matrix (Default / Glass / Mouve)
 
 | Role | Props |
 |------|--------|
@@ -124,35 +96,57 @@ Landing CTA is the product verb (**Finish mint**, **Claim default**), not Connec
 | Warning | `color="warning" radius="full"` |
 | Ghost | `variant="light" radius="full" size="sm"` |
 
-Brutalism: sharp / `radius="none"` CTAs. Other themes: pills.
+Brutalism override: sharp / `radius="none"` CTAs and thick borders. Do not force soft pills.
 
-### Compose recipe (landing — `marketing_campaign`)
+### Compose recipe (clean_product)
 
-Navbar (Features · How it works · Questions, no Connect) → solid **full** job-line hero + two CTAs → **Features** (3 category FeatureCards) → How it works (3 step FeatureCards) → Questions → human footer. Stop.
+Top bar -> chips -> hero -> 3 ActionCards -> one gate card -> form card -> list cards -> stop.
 
-### Compose recipe (desk — `clean_product`)
+Adapting to an existing product theme: keep this structure, recolor with the product's primary / bg / fonts. Do not invent a palette, do not drop the recipe. A chosen Pro theme still applies on top.
 
-Navbar (brand + **one** Connect) → **the same full job line** (`text-balance`) → wrong-network gate only → form card → session list if work happened. Stop.
+### Compose recipe (workstation_dense)
 
-If the product has **no** public landing, desk may keep chips + three ActionCards from `vault-otp.md`. If it **has** a landing, do not repeat those cards on the desk.
+Icon rail -> nav column -> header strip (title, live chip, session, kill switch) -> KPI strip (4 mono stats) -> ledger table + inspector panel side by side -> stop.
 
-When adapting to an **existing product theme**: keep this structure; recolor using the product’s primary/bg/fonts — do not invent a new palette and do not drop the recipe.
+No hero, no action cards, no pills. Everything `size="sm"`, `radius="sm"`, `font-mono tabular-nums` on numbers, units on every value. Full recipe: `case-studies/workstation-dense.md`.
 
----
+## Product split (mandatory, any theme)
+
+If the product has a public story and a place to do the work, ship two routes. Theme only changes radii, shadows, blur, and accent. The split and the primitives stay. Read `case-studies/landing-and-desk.md` (or `burnt-editorial.md` if that profile was named; its root-theme coherence rule wins).
+
+| Route | Style | Job |
+|-------|-------|-----|
+| `/` landing | `marketing_campaign` | Navbar (Features, How it works, Questions, no Connect) -> full job-line hero (`text-balance`, no `<br />`) -> Features -> How it works -> FAQ -> footer. CTA is the product verb to `/desk`. |
+| `/desk` | `clean_product` | Navbar (one Connect) -> the same full job line -> wrong-network only -> form. No features / how-it-works row. |
+
+Hard bans in any theme: second Connect; logo subtitle; faded `bg-clip-text` hero; chopped `<br />` leaving three leftover words; desk h1 shortened to a 3-word stub; missing Features (Features is not How it works); engineering chips; fake ACME footer; invented cards.
+
+## Showcase packs
+
+When the user points at heroui.pro demos, map intent -> pack -> sources (`THEMES.json` -> `showcase_packs`). Theme gate still runs first.
+
+| Pack | What it looks like |
+|------|--------------------|
+| Map navigation | Near / distance, Open / Closed hours, Pick-up / Delivery place cards |
+| Pro AI chat | Structured answer, Sources / Deep search, Ask-anything composer |
+| Music player | Artwork queue, now playing, track rows |
+| Shopping experience | Product, price, size selector, PDP |
+
+## References
+
+When a surface needs outside inspiration, an icon family, a typeface, a color check, or a motion atom HeroUI lacks, read `REFERENCES.md` (curated from designeer.xyz) and fetch one section of https://www.designeer.xyz/llms-full.txt. One supplement component per screen max, restyled with HeroUI tokens. Never mix shadcn / Base UI / Radix into a HeroUI project.
 
 ## Stack
 
-React 18 + `@heroui/react` v2 + Tailwind 3 + Framer Motion + `@iconify/react` (`solar:`) + `react-router-dom` when landing and desk both exist.
-
----
+React 18 + `@heroui/react` v2 (+ `@heroui-pro/react` when available) + Tailwind 3 + Framer Motion + `@iconify/react` (`solar:`)
 
 ## Rules
 
-1. Dual-axis route + style before multi-file UI
-2. Max **4** source reads **per route**
-3. Prefer **clean_product** on desks unless campaign landing or dense admin
-4. Read `case-studies/vault-otp.md` for desk feel; `case-studies/landing-and-desk.md` when both pages exist
-5. Never invent icons; never claim clean_product / case-studies are missing without checking both path layouts
-6. Never put architecture notes in product UI
-7. Never duplicate Connect. Never jam landing into the desk.
-8. Never skip Features. Never chop a locked job line. Same full headline on every page.
+1. Theme gate first
+2. Route + style after theme is locked
+3. Max 4 source reads
+4. `clean_product` unless campaign landing (`marketing_campaign`) or dense real-time surface (`workstation_dense`)
+5. Read `case-studies/vault-otp.md` when the user wants that feel
+6. Never invent icons; never claim skill files are missing without checking both path layouts
+7. Never put architecture notes or eng jargon in product UI
+8. DESIGN.md is the contract: write it once, read it every later session

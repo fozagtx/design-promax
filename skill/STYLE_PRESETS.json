@@ -1,6 +1,6 @@
 {
   "name": "design-promax-style-presets",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Feel/theme presets. Default clean_product = Vault OTP case study. Routing picks surface; style locks quality.",
   "default_preset": "clean_product",
   "case_study": "case-studies/vault-otp.md",
@@ -12,7 +12,7 @@
       "Application/cards (20)__security-settings.tsx"
     ],
     "max_files": 4,
-    "merge_rule": "If style is clean_product or trust_green or clean_product_compact: start from clean_product_core (3), add at most 1 route-specific App.tsx if surface needs chat/sidebar/table/checkout shell. Skip secondary unless atom missing. Cap 4."
+    "merge_rule": "If style is clean_product or trust_green or clean_product_compact: start from clean_product_core (3), add at most 1 route-specific App.tsx if surface needs chat/sidebar/table/checkout shell. Skip secondary unless atom missing. Cap 4. If style is workstation_dense or dense_admin: files = style.must_read (cap 4), no extra shell App."
   },
   "button_matrix": {
     "primary_cta": {
@@ -163,7 +163,7 @@
     "marketing_campaign": {
       "id": "marketing_campaign",
       "label": "Marketing campaign",
-      "when": "Landing, pricing, launch — not logged-in product shell",
+      "when": "Landing, pricing, launch - not logged-in product shell",
       "keywords": ["landing", "marketing site", "pricing page", "campaign", "homepage", "how it works", "hero"],
       "must_read": [
         "Marketing/hero-sections (4)__App.tsx",
@@ -186,7 +186,7 @@
         "cta_is_product_verb_to_desk"
       ],
       "inherits_button_matrix_from": "clean_product",
-      "notes": "Still pill CTAs and solar icons. Never put Connect on the landing. Never fade or <br />-chop hero type. Never skip Features. Features ≠ How it works. Same full job line on landing and desk. Never ship ACME newsletter footer. If the product also has work to do, pair with a /desk route (clean_product) — see landing-and-desk.md."
+      "notes": "Still pill CTAs and solar icons. Never put Connect on the landing. Never fade or <br />-chop hero type. Never skip Features. Features ≠ How it works. Same full job line on landing and desk. Never ship ACME newsletter footer. If the product also has work to do, pair with a /desk route (clean_product) - see landing-and-desk.md."
     },
     "dense_admin": {
       "id": "dense_admin",
@@ -200,6 +200,51 @@
       ],
       "inherits_button_matrix_from": "clean_product",
       "notes": "Keep card borders and full-radius CTAs; allow sidebar + denser grids."
+    },
+    "workstation_dense": {
+      "id": "workstation_dense",
+      "label": "Workstation dense (trading desk / ops console)",
+      "case_study": "case-studies/workstation-dense.md",
+      "when": "Real-time ledgers, order books, execution / audit trails, monitoring and ops consoles, fintech or HFT desks. Operator stares at it all day.",
+      "keywords": ["trading desk", "order ledger", "order book", "hft", "terminal", "ops console", "audit trail", "real-time", "execution", "monitoring", "exchange", "bloomberg", "workstation", "matrix"],
+      "must_read": [
+        "Application/tables (1)__App.tsx",
+        "Charts/KPI-stats (9)__App.tsx",
+        "Application/sidebars (19)__App.tsx",
+        "Application/cards (20)__notification-item.tsx"
+      ],
+      "optional_read": [],
+      "layout": {
+        "shell": "icon_rail (w-14, bg-foreground text-background, 6 solar icons, avatar bottom) + nav_column (w-56, grouped, text-tiny uppercase tracking-wider text-default-400 group labels, rows with right-aligned mono rate) + main",
+        "main_order": ["header_strip", "kpi_strip", "ledger_table + inspector_panel side by side (lg:grid-cols-[1fr_380px])"],
+        "header_strip": "h1 text-medium font-semibold + one-line subtitle text-tiny text-default-500; right side: live Chip color=success variant=flat size=sm with pulsing dot, session Button variant=bordered size=sm radius=sm, kill switch Button color=danger variant=bordered size=sm radius=sm",
+        "kpi_strip": "one Card border-small border-default-200 shadow-none, 4 stats in a row, label text-tiny uppercase tracking-wider text-default-400, value text-medium font-semibold font-mono tabular-nums, semantic color on value (success / primary / danger)",
+        "ledger_table": "HeroUI Table isCompact removeWrapper, header text-tiny uppercase text-default-400, id cell font-mono text-primary, side cell BUY text-success / SELL text-danger font-semibold, status Chip size=sm variant=flat, selected row bg-primary-50 border-l-2 border-primary, hover bg-default-50",
+        "inspector_panel": "Card with selected row title (font-mono) + Chip, two-line summary, mini bar chart (bid rows success-200, ask rows danger-200, dashed center line), timeline rows from notification-item pattern: T+x.xx us font-mono text-primary, title font-semibold, one-line body text-tiny text-default-500, right Chip size=sm variant=bordered; footer two Buttons (primary variant=flat, secondary variant=bordered) both size=sm radius=sm",
+        "max_width": "none (full bleed, h-screen)",
+        "gap": "gap-3",
+        "radius": "rounded-medium cards, radius=sm buttons, never radius=full"
+      },
+      "button_matrix_override": {
+        "primary": "color=\"primary\" variant=\"flat\" size=\"sm\" radius=\"sm\"",
+        "secondary": "variant=\"bordered\" size=\"sm\" radius=\"sm\"",
+        "danger": "color=\"danger\" variant=\"bordered\" size=\"sm\" radius=\"sm\" (kill switch, always visible top-right)",
+        "note": "Dense exception: no pills. Everything size sm."
+      },
+      "copy_rules": [
+        "Labels max 3 words, uppercase tiny",
+        "Every number carries its unit: us, ms, bps, $, %, /s",
+        "Fixed status vocabulary per domain, e.g. FILLED / ROUTED / PARTIAL / ACK; never invent synonyms",
+        "No marketing copy, no hero, no feature cards",
+        "Monospace + tabular-nums for every id, price, latency, timestamp"
+      ],
+      "states": [
+        "Empty ledger: single row 'No orders this session'",
+        "Feed offline: header live chip turns color=danger 'Feed offline'; kill switch stays",
+        "No selection: inspector shows 'Select an order' with text-default-400",
+        "Loading: Skeleton rows matching table row height, never a spinner over the whole screen"
+      ],
+      "notes": "Reference: Sub-Millisecond Order Flow screenshot (icon rail, nav column, header strip, KPI strip, ledger, inspector with microsecond timeline). Theme still applies: Brutalism = 2px borders + mono everywhere, Glass = translucent panels over dark backdrop, Mouve = mauve selected row and chips."
     },
     "chat_soft": {
       "id": "chat_soft",
@@ -223,6 +268,7 @@
     "If product has landing AND work surface → two routes; never jam; theme does not collapse the split",
     "Surface D chat → chat_soft (not random purple landing)",
     "Surface F dense → dense_admin",
+    "Surface F with real-time / terminal / desk / ledger / order book / monitoring keywords → workstation_dense + case-studies/workstation-dense.md",
     "Efficient: clean_product_core 3 files first; +1 route App only if needed; max 4",
     "Always apply button_matrix for CTAs"
   ]

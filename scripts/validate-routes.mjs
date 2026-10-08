@@ -45,7 +45,7 @@ if (existsSync(stylePath)) {
   }
   console.log(`Style presets: ${Object.keys(style.presets || {}).join(", ")} (default ${style.default_preset})`);
 } else {
-  console.warn("STYLE_PRESETS.json missing — style axis not validated");
+  console.warn("STYLE_PRESETS.json missing - style axis not validated");
 }
 
 console.log(`Design ProMax route validation (registry v${registry.version})`);
@@ -57,5 +57,5 @@ if (missing.length) {
   process.exit(1);
 }
 
-console.log("OK — all registry + style paths exist.");
+console.log("OK - all registry + style paths exist.");
 process.exit(0);

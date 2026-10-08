@@ -1,17 +1,17 @@
-# Design ProMax — Template Router (human guide)
+# Design ProMax - Template Router (human guide)
 
 **Machine source of truth:** [ROUTE_REGISTRY.json](ROUTE_REGISTRY.json)  
 **Harness contract:** [ARCHITECTURE.md](ARCHITECTURE.md)
 
 **Problem:** `sources/` has 300+ files. Opening random folders produces slop.  
-**Rule:** Route first via the registry. Open **2–4 primary files** only. Never load a whole category.
+**Rule:** Route first via the registry. Open **at most 4 primary files** (cap 4). Never load a whole category.
 
 Path prefix for all files: `sources/` (relative to this skill folder).  
 If JSON and this doc disagree, **JSON wins**.
 
 ---
 
-## Step 0 — Classify the job (30 seconds)
+## Step 0 - Classify the job (30 seconds)
 
 Pick **exactly one** primary surface (what the user spends time looking at):
 
@@ -44,16 +44,16 @@ Then pick **chrome**:
 
 ---
 
-## Step 1 — Intent → best template pack (read these first)
+## Step 1 - Intent → best template pack (read these first)
 
-### A — Marketing / landing
+### A - Marketing / landing
 
 | Sub-intent | Primary (read first) | Secondary (if needed) | Avoid |
 |------------|----------------------|------------------------|-------|
 | Full landing | `Marketing/hero-sections (4)__App.tsx` | `Marketing/faqs (4)__*.tsx`, `Marketing/footers (4)__*.tsx` | Application sidebars |
 | Pricing | `Marketing/pricing (8)__pricing*.tsx` | `Marketing/pricing-comparison (8)__*.tsx` | Random cards only |
 | Feature grid | `AI/features (1)__feature-card.tsx` + `AI/features (1)__App.tsx` | `Marketing/banners (8)__*.tsx` | Dense tables |
-| Banner / promo | `Marketing/banners (8)__*.tsx` | — | Full dashboard layouts |
+| Banner / promo | `Marketing/banners (8)__*.tsx` | none | Full dashboard layouts |
 
 **Compose order:** Navbar (no Connect) → solid hero + two CTAs → FeatureCards (how it works) → FAQ → human footer.  
 **CTA:** product verb → `/desk`. Never Connect on the landing.  
@@ -64,7 +64,7 @@ Then pick **chrome**:
 
 ---
 
-### B — Auth
+### B - Auth
 
 | Sub-intent | Primary | Secondary | Avoid |
 |------------|---------|-----------|-------|
@@ -77,7 +77,7 @@ Then pick **chrome**:
 
 ---
 
-### C — App shell / dashboard
+### C - App shell / dashboard
 
 | Sub-intent | Primary | Secondary | Avoid |
 |------------|---------|-----------|-------|
@@ -91,7 +91,7 @@ Then pick **chrome**:
 
 ---
 
-### D — Chat / AI
+### D - Chat / AI
 
 | Sub-intent | Primary | Secondary | Avoid |
 |------------|---------|-----------|-------|
@@ -105,7 +105,7 @@ Then pick **chrome**:
 
 ---
 
-### E — Commerce
+### E - Commerce
 
 | Sub-intent | Primary | Secondary | Avoid |
 |------------|---------|-----------|-------|
@@ -113,32 +113,33 @@ Then pick **chrome**:
 | Product detail | `E-commerce/product-view (1)__product-view-item.tsx` | rating radio groups | Sidebars full app |
 | Filters | `E-commerce/filters (9)__filters-wrapper.tsx` | price-slider, tag-group | Auth |
 | Checkout | `E-commerce/checkouts (4)__App.tsx` | payment-form, order-summary, shipping-form | Chat |
-| Reviews | `E-commerce/reviews (6)__reviews.tsx` + `card-review.tsx` | summary-rating-card | — |
+| Reviews | `E-commerce/reviews (6)__reviews.tsx` + `card-review.tsx` | summary-rating-card | none |
 
 **Compose order:** Grid or detail first; filters as rail/drawer; checkout multi-column summary + form.
 
 ---
 
-### F — Data / charts
+### F - Data / charts
 
 | Sub-intent | Primary | Secondary | Avoid |
 |------------|---------|-----------|-------|
 | KPI row | `Charts/KPI-stats (9)__App.tsx` | individual stat patterns in same folder | Hero marketing |
-| Bar / donut | `Charts/Bars-and-Circles (10)__App.tsx` | — | Auth cards |
-| Line / area | `Charts/Graphs (2)__App.tsx` | — | — |
+| Bar / donut | `Charts/Bars-and-Circles (10)__App.tsx` | none | Auth cards |
+| Line / area | `Charts/Graphs (2)__App.tsx` | none | none |
 | Data table | `Application/tables (1)__*.tsx` | Command Menus for search | Feature cards only |
+| Workstation (ledger + inspector) | `Application/tables (1)__App.tsx` + `Charts/KPI-stats (9)__App.tsx` | `Application/sidebars (19)__App.tsx`, `Application/cards (20)__notification-item.tsx` | Hero, action cards, pills |
 
 **Compose order:** KPI row → chart → table.  
 **Density:** Dense; keep cards `shadow-small border-default-200`.
 
 ---
 
-### G — Forms / wizards
+### G - Forms / wizards
 
 | Sub-intent | Primary | Secondary | Avoid |
 |------------|---------|-----------|-------|
 | Multi-step form | `Application/forms (1)__*.tsx` (all) | `Application/steppers (7)__*.tsx` | Single huge unsectioned form |
-| Step indicator only | `Application/steppers (7)__*.tsx` | forms folder for fields | — |
+| Step indicator only | `Application/steppers (7)__*.tsx` | forms folder for fields | none |
 | Calendar booking | `Application/calendar (3)__App.tsx` | booking-form, calendar-time-select | Checkout copy-paste |
 
 **Compose order:** Stepper → one step card → primary continue.  
@@ -146,7 +147,7 @@ Then pick **chrome**:
 
 ---
 
-### H — Wallet / crypto dapp (not in original HeroUI packs — **compose**)
+### H - Wallet / crypto dapp (not in original HeroUI packs - **compose**)
 
 There is no `Wallet/` folder. **Compose** from these only:
 
@@ -173,7 +174,7 @@ There is no `Wallet/` folder. **Compose** from these only:
 
 ---
 
-## Step 2 — Form component router (fields, not full pages)
+## Step 2 - Form component router (fields, not full pages)
 
 When building **forms**, pick field patterns from the **same surface** as the page:
 
@@ -191,11 +192,11 @@ When building **forms**, pick field patterns from the **same surface** as the pa
 
 ---
 
-## Step 3 — Anti-slop routing (reject these defaults)
+## Step 3 - Anti-slop routing (reject these defaults)
 
 | Temptation | Instead route to |
 |------------|------------------|
-| Generic “3 feature cards with Lorem” | `action-card.tsx` or `feature-card.tsx` + real product copy |
+| Generic "3 feature cards with Lorem" | `action-card.tsx` or `feature-card.tsx` + real product copy |
 | Purple gradient AI landing for a dapp | H compose pack (auth + action-card) |
 | Dashboard sidebar on a marketing page | Marketing pack only |
 | Sticky glass nav + fake metrics | Real empty states; no invented KPIs |
@@ -204,7 +205,7 @@ When building **forms**, pick field patterns from the **same surface** as the pa
 
 ---
 
-## Step 4 — Quality bar (Vault OTP / GhostKeys / `clean_product`)
+## Step 4 - Quality bar (Vault OTP / GhostKeys / `clean_product`)
 
 **Full layout recipe (not just a checklist):**  
 `case-studies/vault-otp.md` + style id **`clean_product`** in `STYLE_PRESETS.json`.  
@@ -221,10 +222,10 @@ That case study defines:
 
 Before shipping UI, checklist:
 
-1. **Routed** via `ROUTE_REGISTRY.json` (surface A–H)  
+1. **Routed** via `ROUTE_REGISTRY.json` (surface A-H)  
 2. **Styled** via `STYLE_PRESETS.json` (default `clean_product`)  
 3. **Read** `case-studies/vault-otp.md` when user wants that feel  
-4. **Read 3–4 real source files** (not invented classNames)  
+4. **Read 3-4 real source files** (not invented classNames)  
 5. **Icons:** `@iconify/react` + `solar:` / `gravity-ui:`  
 6. **Tokens:** `bg-content1`, `text-default-500/900`, `border-default-200`, `shadow-small`, `rounded-large/medium` (recolor primary to product theme if asked)  
 7. **Components:** `forwardRef` + `cn` + `displayName` for reusable pieces  
@@ -236,7 +237,7 @@ Before shipping UI, checklist:
 
 ---
 
-## Step 5 — Quick decision tree (paste into agent thought)
+## Step 5 - Quick decision tree (paste into agent thought)
 
 ```
 What is the main screen?
@@ -246,6 +247,7 @@ What is the main screen?
   chat/AI → D + prompt-containers App.tsx
   shop → E + product-list or checkout App
   analytics → F + KPI + graphs
+  trading desk / ledger / terminal / console -> F.workstation + workstation_dense
   multi-step → G + forms + steppers
   wallet/crypto dapp → H compose (navbar + form; landing is a separate A route)
 Then: open ONLY the Primary files → adapt → stop.

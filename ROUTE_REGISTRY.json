@@ -1,10 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "design-promax-route-registry",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Machine-readable template router + style presets. Paths relative to skill/sources/. Always apply default style preset after routing.",
   "protocol": {
     "before_write_ui": [
+      "write_or_read_project_DESIGN_md",
       "fast_keyword_index",
       "load_route_entry",
       "select_style_preset",
@@ -18,7 +19,7 @@
     "sources_root": "sources",
     "style_presets_file": "STYLE_PRESETS.json",
     "default_style_preset": "clean_product",
-    "style_merge": "Union route.primary with style.must_read, prefer .tsx, preserve route files first, then style must_read not already included, hard cap 5. Secondary only if still missing atoms.",
+    "style_merge": "Union route.primary with style.must_read, prefer .tsx, preserve route files first, then style must_read not already included, hard cap 4. Secondary only if still missing atoms.",
     "case_studies_dir": "case-studies",
     "efficient_merge": "IF style in (clean_product, trust_green, clean_product_compact): files = STYLE_PRESETS.efficient_read.clean_product_core (3). IF route needs shell (see shell_apps): append exactly one App.tsx. Cap 4. Surface H: core only (3). ELSE: style.must_read then at most one shell App. Cap 4."
   },
@@ -368,9 +369,44 @@
         "analytics",
         "stats",
         "metrics",
-        "dashboard stats"
+        "dashboard stats",
+        "trading desk",
+        "order ledger",
+        "order book",
+        "terminal",
+        "ops console",
+        "audit trail",
+        "real-time",
+        "monitoring",
+        "execution"
       ],
       "routes": {
+        "workstation": {
+          "primary": [
+            "Application/tables (1)__App.tsx",
+            "Charts/KPI-stats (9)__App.tsx",
+            "Application/sidebars (19)__App.tsx",
+            "Application/cards (20)__notification-item.tsx"
+          ],
+          "secondary": [
+            "Application/tables (1)__Status.tsx",
+            "Charts/Bars-and-Circles (10)__App.tsx"
+          ],
+          "compose_order": [
+            "icon_rail",
+            "nav_column",
+            "header_strip",
+            "kpi_strip",
+            "ledger_table",
+            "inspector_panel"
+          ],
+          "avoid": [
+            "Marketing/hero-sections",
+            "Application/cards (20)__action-card.tsx as feature row",
+            "radius-full buttons"
+          ],
+          "style_preset": "workstation_dense"
+        },
         "kpi_row": {
           "primary": [
             "Charts/KPI-stats (9)__App.tsx"
@@ -548,7 +584,9 @@
     "Solid hero type; never gradient-clipped fade; never <br /> that leaves three leftover words",
     "Full locked job line on landing AND desk; never a 3-word stub headline",
     "Landing Features section required and distinct from How it works",
-    "Logo is icon + name only"
+    "Logo is icon + name only",
+    "Dense surfaces (workstation_dense): font-mono tabular-nums on every number, units on every value, status chips from a fixed vocabulary, kill switch visible, no pills",
+    "Project DESIGN.md exists at project root and matches THEMES.json for the chosen theme; later sessions read it instead of re-asking the theme"
   ],
   "keyword_index": {
     "landing": "A.landing",
@@ -574,6 +612,21 @@
     "kpi": "F.kpi_row",
     "chart": "F.charts",
     "table": "F.table",
+    "trading desk": "F.workstation",
+    "trading": "F.workstation",
+    "order ledger": "F.workstation",
+    "ledger": "F.workstation",
+    "order book": "F.workstation",
+    "hft": "F.workstation",
+    "terminal": "F.workstation",
+    "ops console": "F.workstation",
+    "console": "F.workstation",
+    "audit trail": "F.workstation",
+    "real-time": "F.workstation",
+    "monitoring": "F.workstation",
+    "execution": "F.workstation",
+    "exchange": "F.workstation",
+    "workstation": "F.workstation",
     "wizard": "G.multistep",
     "onboarding": "G.multistep",
     "wallet": "H.vault_or_dapp_shell",
@@ -599,6 +652,7 @@
     "F.table": "Application/tables (1)__App.tsx",
     "F.charts": "Charts/KPI-stats (9)__App.tsx",
     "F.kpi_row": "Charts/KPI-stats (9)__App.tsx",
+    "F.workstation": "Application/sidebars (19)__App.tsx",
     "E.checkout": "E-commerce/checkouts (4)__App.tsx",
     "E.product_grid": "E-commerce/product-list (9)__App.tsx",
     "A.landing": "Marketing/hero-sections (4)__App.tsx",

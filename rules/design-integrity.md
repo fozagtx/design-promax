@@ -23,7 +23,7 @@ Use only HeroUI semantic design tokens found in the source files:
 Never use raw Tailwind color classes like `bg-gray-100` or `text-blue-500`.
 
 ## Rule 4: Icon Sourcing
-All icons must use `@iconify/react` `Icon` component with `solar:` or `gravity-ui:` prefixes. Icon names must be verified against real source file imports — never invented.
+All icons must use `@iconify/react` `Icon` component with `solar:` or `gravity-ui:` prefixes. Icon names must be verified against real source file imports - never invented.
 
 ## Rule 5: Data Separation
 Component state, mock data, and configuration must be in separate data files/modules. Never inline large data structures inside component render logic.
@@ -48,3 +48,9 @@ If the product has a locked job line, paste it whole on landing **and** desk. Us
 
 ## Rule 12: Features is not How it works
 Landing compose is hero → Features (`AI/features (1)__App.tsx` category cards) → How it works (steps) → FAQ → footer. Nav includes Features. Skipping Features is a fail.
+
+## Rule 13: DESIGN.md is the contract
+Write it after the theme gate from templates/DESIGN.md; read it on later sessions; never re-ask the theme while it exists.
+
+## Rule 14: Dense surfaces
+workstation_dense: font-mono tabular-nums on numbers, units on values, fixed status vocabulary, kill switch visible, size sm, radius sm, no pills, no hero.
