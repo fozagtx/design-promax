@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "design-promax-route-registry",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Machine-readable template router + style presets. Paths relative to skill/sources/. Always apply default style preset after routing.",
   "protocol": {
     "before_write_ui": [
@@ -50,13 +50,20 @@
             "Marketing/footers (4)__App.tsx"
           ],
           "secondary": [
-            "Marketing/faqs (4)__App.tsx"
+            "Marketing/faqs (4)__App.tsx",
+            "Application/scrolling-banners (5)__App.tsx",
+            "Marketing/hero-sections (4)__app-screenshot.tsx",
+            "Marketing/pricing (8)__App.tsx"
           ],
           "compose_order": [
             "navbar_no_connect",
             "solid_hero_full_job_line",
+            "product_screenshot_optional",
+            "logo_marquee_if_real",
             "features",
             "how_it_works",
+            "testimonials_if_real",
+            "pricing_optional",
             "faq",
             "human_footer"
           ],
@@ -71,7 +78,12 @@
             "jamming_desk_form_on_landing",
             "skipping_features_section"
           ],
-          "quality_notes": "Landing-and-desk split: CTA is the product verb to /desk. Read case-studies/landing-and-desk.md"
+          "quality_notes": "Landing-and-desk split: CTA is the product verb to /desk. Read case-studies/landing-and-desk.md",
+          "adapt": [
+            "Copy BasicNavbar, hero spacing, CTA pair (black pill primary + bordered secondary with arrow circle), AppScreenshot/FadeInImage below hero",
+            "OVERRIDE the headline block: the source uses bg-hero-section-title bg-clip-text text-transparent and a <br /> chop. Replace with solid text-foreground, text-balance, no <br />, full job line",
+            "Replace Acme copy with the product job line; remove 'New onboarding experience' pill unless there is a real announcement"
+          ]
         },
         "pricing": {
           "primary": [
@@ -88,6 +100,9 @@
           ],
           "avoid": [
             "AI/prompt-containers"
+          ],
+          "adapt": [
+            "Copy Tabs frequency switch + tier RadioGroup; keep one highlighted tier with Chip 'Most popular'; CTA per tier radius-full"
           ]
         },
         "features": {
@@ -101,7 +116,98 @@
           "compose_order": [
             "grid_of_feature_cards"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy FeatureCard grid from features App; category cards only, real product copy"
+          ]
+        },
+        "social_proof": {
+          "primary": [
+            "Application/scrolling-banners (5)__App.tsx",
+            "Application/scrolling-banners (5)__scrolling-banner.tsx",
+            "Application/scrolling-banners (5)__user-review.tsx"
+          ],
+          "secondary": [
+            "Application/scrolling-banners (5)__logos.tsx"
+          ],
+          "compose_order": [
+            "logo_marquee",
+            "testimonial_marquee"
+          ],
+          "avoid": [
+            "fake_customer_logos",
+            "invented_quotes"
+          ],
+          "adapt": [
+            "Logo marquee only with real customer logos; otherwise omit the block or label it 'Sample logos' in a Chip. Testimonials only from real quotes; never invent names or companies"
+          ]
+        },
+        "team": {
+          "primary": [
+            "Marketing/teams (1)__App.tsx",
+            "Marketing/teams (1)__team-member-card.tsx"
+          ],
+          "secondary": [],
+          "compose_order": [
+            "heading",
+            "member_grid"
+          ],
+          "avoid": [
+            "stock_avatars_as_real_people"
+          ],
+          "adapt": [
+            "Copy member grid + team-member-card; real people only"
+          ]
+        },
+        "announcement_banner": {
+          "primary": [
+            "Marketing/banners (8)__App.tsx"
+          ],
+          "secondary": [],
+          "compose_order": [
+            "top_banner"
+          ],
+          "avoid": [
+            "banner_plus_hero_pill_duplicate"
+          ],
+          "adapt": [
+            "Copy top banner strip; do not duplicate with hero pill"
+          ]
+        },
+        "faq": {
+          "primary": [
+            "Marketing/faqs (4)__App.tsx"
+          ],
+          "secondary": [],
+          "compose_order": [
+            "accordion"
+          ],
+          "avoid": [],
+          "adapt": [
+            "Accordion with real questions; 5 to 8 items; no 'Lorem'"
+          ]
+        },
+        "footer": {
+          "primary": [
+            "Marketing/footers (4)__App.tsx"
+          ],
+          "secondary": [
+            "Marketing/footers (4)__theme-switch.tsx"
+          ],
+          "adapt": [
+            "Strip ACME newsletter and fake # columns; keep brand, 3 to 5 real links, theme switch optional"
+          ]
+        },
+        "cookie_consent": {
+          "primary": [
+            "Marketing/cookie-consents (8)__App.tsx"
+          ],
+          "secondary": [
+            "Marketing/cookie-consents (8)__switch-cell.tsx"
+          ],
+          "adapt": [
+            "Copy consent banner; keep Accept / Preferences actions"
+          ]
         }
       },
       "style_preset": "marketing_campaign"
@@ -139,6 +245,9 @@
           "avoid": [
             "Application/sidebars",
             "Marketing/footers"
+          ],
+          "adapt": [
+            "Copy centered card bg-content1 rounded-large shadow-small, Input variant=bordered, full-width primary CTA; replace Acme logo with product mark (icon + name only)"
           ]
         },
         "unlock_or_connect_gate": {
@@ -155,6 +264,9 @@
           "avoid": [
             "eng_jargon_in_ui",
             "contract_address_footers"
+          ],
+          "adapt": [
+            "Copy centered gate card + single CTA; action-card pattern for helper tips; one gate per state"
           ]
         }
       },
@@ -192,24 +304,38 @@
           ],
           "avoid": [
             "Marketing/hero-sections as body"
+          ],
+          "adapt": [
+            "Copy Sidebar + sectionNestedItems structure; ScrollShadow for long nav; keep avatar footer; no marketing hero in main"
+          ],
+          "deps": [
+            "usehooks-ts (useMediaQuery) in Layouts/sidebars; replace with a matchMedia hook if not installed"
           ]
         },
         "settings": {
           "primary": [
+            "Application/Layouts (2)__account-setting.tsx",
             "Application/cards (20)__security-settings.tsx",
-            "Application/cards (20)__cell-wrapper.tsx",
-            "Application/cards (20)__account-details.tsx"
+            "Application/cards (20)__cell-wrapper.tsx"
           ],
           "secondary": [
-            "Application/Layouts (2)__App.tsx"
+            "Application/Layouts (2)__billing-setting.tsx",
+            "Application/Layouts (2)__appearance-setting.tsx",
+            "Application/Layouts (2)__team-setting.tsx",
+            "Application/Layouts (2)__team-manage-table.tsx",
+            "Application/cards (20)__account-details.tsx"
           ],
           "compose_order": [
             "page_title",
+            "tabs_account_billing_appearance_team",
             "settings_rows",
-            "actions"
+            "danger_zone_last"
           ],
           "avoid": [
             "Marketing/hero-sections"
+          ],
+          "adapt": [
+            "Layouts (2)__App.tsx is a MESSAGING inbox, not settings; never open it for settings"
           ]
         },
         "action_tiles": {
@@ -221,7 +347,46 @@
           "compose_order": [
             "grid_3_action_cards"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy the 3-card action grid; action-card atoms only, real product verbs"
+          ]
+        },
+        "top_navbar_app": {
+          "primary": [
+            "Application/Navigation Headers (5)__App.tsx",
+            "Application/Navigation Headers (5)__notifications-card.tsx"
+          ],
+          "secondary": [
+            "Application/Navigation Headers (5)__notification-item.tsx"
+          ],
+          "compose_order": [
+            "navbar_with_search_and_bell",
+            "notifications_popover",
+            "main"
+          ],
+          "adapt": [
+            "Use when the app has no sidebar; notifications popover pattern from notifications-card"
+          ]
+        },
+        "command_menu": {
+          "primary": [
+            "Application/Command Menus (1)__App.tsx"
+          ],
+          "secondary": [
+            "Application/Command Menus (1)__popover.tsx"
+          ],
+          "deps": [
+            "cmdk",
+            "match-sorter",
+            "lodash",
+            "usehooks-ts",
+            "react-multi-ref",
+            "scroll-into-view-if-needed"
+          ],
+          "adapt": [
+            "Heavy deps; copy the visual pattern (Card + grouped results + kbd hints) and reimplement with HeroUI Listbox + Modal unless the project already has cmdk"
+          ]
         }
       },
       "style_preset": "clean_product"
@@ -260,6 +425,9 @@
           ],
           "avoid": [
             "Marketing/hero-sections"
+          ],
+          "adapt": [
+            "Copy conversation column + sticky prompt input; message-card for assistant / user bubbles; sidebar history optional"
           ]
         },
         "prompt_only": {
@@ -273,7 +441,10 @@
           "compose_order": [
             "composer"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy prompt-input composer with bottom actions; pair with AI/messages message-card for answers"
+          ]
         },
         "playground": {
           "primary": [
@@ -286,7 +457,47 @@
           "compose_order": [
             "playground_layout"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy playground layout; keep prompt panel + conversation split"
+          ]
+        },
+        "messaging_inbox": {
+          "primary": [
+            "Application/Layouts (2)__App.tsx",
+            "Application/Layouts (2)__messaging-chat-inbox.tsx",
+            "Application/Layouts (2)__messaging-chat-window.tsx"
+          ],
+          "secondary": [
+            "Application/Layouts (2)__messaging-chat-message.tsx",
+            "Application/Layouts (2)__messaging-chat-input.tsx",
+            "Application/Layouts (2)__messaging-chat-profile.tsx"
+          ],
+          "compose_order": [
+            "inbox_list",
+            "chat_window",
+            "profile_panel_optional"
+          ],
+          "deps": [
+            "usehooks-ts",
+            "framer-motion"
+          ],
+          "adapt": [
+            "Human-to-human messaging, not AI chat"
+          ]
+        },
+        "assistant_messages": {
+          "primary": [
+            "AI/messages (6)__App.tsx",
+            "AI/messages (6)__message-card.tsx"
+          ],
+          "secondary": [],
+          "compose_order": [
+            "message_list"
+          ],
+          "adapt": [
+            "Use for rendering assistant answers with feedback actions; pair with D.prompt_only for the composer"
+          ]
         }
       },
       "style_preset": "clean_product"
@@ -322,6 +533,9 @@
           ],
           "avoid": [
             "AI/prompt-containers"
+          ],
+          "adapt": [
+            "Copy products-grid + product-list-item; filters rail optional"
           ]
         },
         "checkout": {
@@ -337,7 +551,10 @@
             "form_column",
             "summary_column"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy two-column form + summary; keep order-summary and payment-form atoms"
+          ]
         },
         "reviews": {
           "primary": [
@@ -345,13 +562,54 @@
             "E-commerce/reviews (6)__card-review.tsx"
           ],
           "secondary": [
-            "E-commerce/reviews (6)__summary-rating-card.tsx"
+            "E-commerce/reviews (6)__summary-rating-card.tsx",
+            "E-commerce/reviews (6)__modal-review.tsx"
           ],
           "compose_order": [
             "summary",
             "review_list"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy summary-rating-card + review list; modal-review for write-a-review"
+          ]
+        },
+        "product_detail": {
+          "primary": [
+            "E-commerce/product-view (1)__App.tsx",
+            "E-commerce/product-view (1)__product-view-item.tsx"
+          ],
+          "secondary": [
+            "E-commerce/product-view (1)__color-radio-item.tsx",
+            "E-commerce/product-view (1)__tag-group-radio-item.tsx",
+            "E-commerce/reviews (6)__summary-rating-card.tsx"
+          ],
+          "compose_order": [
+            "breadcrumbs",
+            "gallery_plus_info",
+            "size_color_selectors",
+            "add_to_cart",
+            "reviews_summary"
+          ],
+          "adapt": [
+            "Copy PDP layout; color/size via radio items; reviews summary from reviews pack"
+          ]
+        },
+        "filters": {
+          "primary": [
+            "E-commerce/filters (9)__App.tsx",
+            "E-commerce/filters (9)__filters-wrapper.tsx"
+          ],
+          "secondary": [
+            "E-commerce/filters (9)__price-slider.tsx",
+            "E-commerce/filters (9)__tag-group-item.tsx"
+          ],
+          "compose_order": [
+            "filters_rail_or_drawer"
+          ],
+          "adapt": [
+            "Copy filters wrapper + price slider + tag group; rail on desktop, drawer on mobile"
+          ]
         }
       },
       "style_preset": "clean_product"
@@ -405,7 +663,10 @@
             "Application/cards (20)__action-card.tsx as feature row",
             "radius-full buttons"
           ],
-          "style_preset": "workstation_dense"
+          "style_preset": "workstation_dense",
+          "adapt": [
+            "See case-studies/workstation-dense.md"
+          ]
         },
         "kpi_row": {
           "primary": [
@@ -415,7 +676,13 @@
           "compose_order": [
             "kpi_row"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy stat cells: uppercase tiny label, semibold value, semantic delta"
+          ],
+          "deps": [
+            "recharts"
+          ]
         },
         "charts": {
           "primary": [
@@ -429,20 +696,30 @@
             "kpi",
             "chart"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy Bars-and-Circles + Graphs charts"
+          ],
+          "deps": [
+            "recharts"
+          ]
         },
         "table": {
           "primary": [
             "Application/tables (1)__App.tsx"
           ],
           "secondary": [
-            "Application/Command Menus (1)__App.tsx"
+            "Application/Command Menus (1)__App.tsx",
+            "Application/tables (1)__Status.tsx"
           ],
           "compose_order": [
             "table",
             "search_optional"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy Table isCompact + Status chip; command menu only for search"
+          ]
         }
       },
       "style_preset": "dense_admin"
@@ -468,7 +745,10 @@
             "Application/steppers (7)__App.tsx"
           ],
           "secondary": [
-            "Application/forms (1)__company-information-form.tsx"
+            "Application/forms (1)__multistep-sidebar.tsx",
+            "Application/forms (1)__company-information-form.tsx",
+            "Application/steppers (7)__vertical-collapsible-steps.tsx",
+            "Application/forms (1)__multistep-navigation-buttons.tsx"
           ],
           "compose_order": [
             "stepper",
@@ -477,6 +757,9 @@
           ],
           "avoid": [
             "unsectioned_mega_form"
+          ],
+          "adapt": [
+            "Copy stepper + step card + continue CTA; multistep-sidebar for side nav"
           ]
         },
         "booking": {
@@ -492,14 +775,32 @@
             "time",
             "form"
           ],
-          "avoid": []
+          "avoid": [],
+          "adapt": [
+            "Copy calendar + booking-form + time select"
+          ]
+        },
+        "feedback_rating": {
+          "primary": [
+            "Application/feedbacks (4)__App.tsx",
+            "Application/feedbacks (4)__feedback-rating-item.tsx"
+          ],
+          "secondary": [],
+          "compose_order": [
+            "rating_radio",
+            "comment_optional",
+            "submit"
+          ],
+          "adapt": [
+            "Copy feedback rating item; rating radio + optional comment + submit"
+          ]
         }
       },
       "style_preset": "clean_product"
     },
     "H": {
       "id": "wallet_dapp",
-      "label": "Wallet / crypto dapp (compose pack \u2014 no dedicated folder)",
+      "label": "Wallet / crypto dapp (compose pack - no dedicated folder)",
       "chrome": "app",
       "density_default": "medium",
       "keywords": [
@@ -545,7 +846,10 @@
             "marketing_hero_as_desk_body",
             "chain_name_chips"
           ],
-          "quality_notes": "If a landing exists, follow case-studies/landing-and-desk.md. Connect once in the navbar. Human copy. Wrong-network is Switch, not a second Connect."
+          "quality_notes": "If a landing exists, follow case-studies/landing-and-desk.md. Connect once in the navbar. Human copy. Wrong-network is Switch, not a second Connect.",
+          "adapt": [
+            "Compose from auth gate + action-card + security-settings; see case-studies/vault-otp.md"
+          ]
         }
       },
       "style_preset": "clean_product",
@@ -586,7 +890,11 @@
     "Landing Features section required and distinct from How it works",
     "Logo is icon + name only",
     "Dense surfaces (workstation_dense): font-mono tabular-nums on every number, units on every value, status chips from a fixed vocabulary, kill switch visible, no pills",
-    "Project DESIGN.md exists at project root and matches THEMES.json for the chosen theme; later sessions read it instead of re-asking the theme"
+    "Project DESIGN.md exists at project root and matches THEMES.json for the chosen theme; later sessions read it instead of re-asking the theme",
+    "Hero headline is solid text-foreground with text-balance; the hero-sections source headline (gradient clip + <br />) is a layout reference only",
+    "Social proof only when real: real logos / real quotes, else omit or label 'Sample'",
+    "Settings pages route to Layouts (2)__*-setting.tsx, never to Layouts (2)__App.tsx (messaging)",
+    "Every route lists non-stack deps; never assume cmdk / lodash / usehooks-ts are installed"
   ],
   "keyword_index": {
     "landing": "A.landing",
@@ -594,7 +902,7 @@
     "homepage": "A.landing",
     "how it works": "A.landing",
     "features": "A.landing",
-    "footer": "A.landing",
+    "footer": "A.footer",
     "pricing": "A.pricing",
     "login": "B.login_signup",
     "signup": "B.login_signup",
@@ -642,7 +950,44 @@
     "those buttons": "H.vault_or_dapp_shell",
     "pill buttons": "H.vault_or_dapp_shell",
     "authenticator": "H.vault_or_dapp_shell",
-    "2fa": "H.vault_or_dapp_shell"
+    "2fa": "H.vault_or_dapp_shell",
+    "testimonials": "A.social_proof",
+    "social proof": "A.social_proof",
+    "logos": "A.social_proof",
+    "customer logos": "A.social_proof",
+    "trust bar": "A.social_proof",
+    "team": "A.team",
+    "about us": "A.team",
+    "founders": "A.team",
+    "announcement": "A.announcement_banner",
+    "banner": "A.announcement_banner",
+    "faq": "A.faq",
+    "questions": "A.faq",
+    "cookie": "A.cookie_consent",
+    "consent": "A.cookie_consent",
+    "product detail": "E.product_detail",
+    "pdp": "E.product_detail",
+    "product page": "E.product_detail",
+    "filters": "E.filters",
+    "filter rail": "E.filters",
+    "inbox": "D.messaging_inbox",
+    "messaging": "D.messaging_inbox",
+    "dm": "D.messaging_inbox",
+    "direct messages": "D.messaging_inbox",
+    "notifications": "C.top_navbar_app",
+    "bell": "C.top_navbar_app",
+    "command palette": "C.command_menu",
+    "cmd k": "C.command_menu",
+    "quick search": "C.command_menu",
+    "feedback": "G.feedback_rating",
+    "rating": "G.feedback_rating",
+    "nps": "G.feedback_rating",
+    "billing": "C.settings",
+    "plan": "C.settings",
+    "subscription settings": "C.settings",
+    "appearance": "C.settings",
+    "team settings": "C.settings",
+    "members": "C.settings"
   },
   "shell_apps": {
     "D.full_chat": "AI/prompt-containers (11)__App.tsx",
@@ -661,6 +1006,30 @@
     "G.booking": "Application/calendar (3)__App.tsx",
     "B.login_signup": null,
     "B.unlock_or_connect_gate": null,
-    "H.vault_or_dapp_shell": null
+    "H.vault_or_dapp_shell": null,
+    "C.top_navbar_app": "Application/Navigation Headers (5)__App.tsx",
+    "D.messaging_inbox": "Application/Layouts (2)__App.tsx",
+    "E.product_detail": "E-commerce/product-view (1)__App.tsx"
+  },
+  "section_router": {
+    "description": "Landing / marketing sections are atoms. Pick by section, not by category.",
+    "map": {
+      "navbar": "Marketing/hero-sections (4)__basic-navbar.tsx",
+      "navbar_centered": "Marketing/hero-sections (4)__centered-navbar.tsx",
+      "hero": "Marketing/hero-sections (4)__App.tsx",
+      "product_screenshot": "Marketing/hero-sections (4)__app-screenshot.tsx",
+      "announcement": "Marketing/banners (8)__App.tsx",
+      "logo_marquee": "Application/scrolling-banners (5)__App.tsx",
+      "testimonials": "Application/scrolling-banners (5)__user-review.tsx",
+      "features": "AI/features (1)__App.tsx",
+      "feature_card": "AI/features (1)__feature-card.tsx",
+      "how_it_works": "AI/features (1)__feature-card.tsx",
+      "pricing": "Marketing/pricing (8)__App.tsx",
+      "pricing_comparison": "Marketing/pricing-comparison (8)__App.tsx",
+      "team": "Marketing/teams (1)__App.tsx",
+      "faq": "Marketing/faqs (4)__App.tsx",
+      "footer": "Marketing/footers (4)__App.tsx",
+      "cookie_consent": "Marketing/cookie-consents (8)__App.tsx"
+    }
   }
 }

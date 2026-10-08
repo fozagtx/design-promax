@@ -50,12 +50,18 @@ Then pick **chrome**:
 
 | Sub-intent | Primary (read first) | Secondary (if needed) | Avoid |
 |------------|----------------------|------------------------|-------|
-| Full landing | `Marketing/hero-sections (4)__App.tsx` | `Marketing/faqs (4)__*.tsx`, `Marketing/footers (4)__*.tsx` | Application sidebars |
-| Pricing | `Marketing/pricing (8)__pricing*.tsx` | `Marketing/pricing-comparison (8)__*.tsx` | Random cards only |
-| Feature grid | `AI/features (1)__feature-card.tsx` + `AI/features (1)__App.tsx` | `Marketing/banners (8)__*.tsx` | Dense tables |
-| Banner / promo | `Marketing/banners (8)__*.tsx` | none | Full dashboard layouts |
+| Full landing | `Marketing/hero-sections (4)__App.tsx` + `basic-navbar.tsx` + `AI/features (1)__feature-card.tsx` + `Marketing/footers (4)__App.tsx` | `Marketing/faqs (4)__App.tsx`, `Application/scrolling-banners (5)__App.tsx`, `hero-sections (4)__app-screenshot.tsx`, `Marketing/pricing (8)__App.tsx` | Application sidebars |
+| Social proof | `Application/scrolling-banners (5)__App.tsx` + `scrolling-banner.tsx` + `user-review.tsx` | `scrolling-banners (5)__logos.tsx` | Fake logos, invented quotes |
+| Pricing | `Marketing/pricing (8)__App.tsx` | `Marketing/pricing-comparison (8)__App.tsx` | Random cards only |
+| Team | `Marketing/teams (1)__App.tsx` + `team-member-card.tsx` | none | Stock avatars as real people |
+| Announcement | `Marketing/banners (8)__App.tsx` | none | Banner + hero pill duplicate |
+| FAQ | `Marketing/faqs (4)__App.tsx` | none | Lorem questions |
+| Footer | `Marketing/footers (4)__App.tsx` | `footers (4)__theme-switch.tsx` | ACME newsletter, fake # links |
+| Cookie consent | `Marketing/cookie-consents (8)__App.tsx` | `cookie-consents (8)__switch-cell.tsx` | Blocking modal on load |
 
-**Compose order:** Navbar (no Connect) → solid hero + two CTAs → FeatureCards (how it works) → FAQ → human footer.  
+Note: `hero-sections (4)__App.tsx` headline is the banned gradient + `<br />` pattern: copy the layout, replace the headline with solid `text-foreground` + `text-balance`.
+
+**Compose order (section_recipe):** navbar (no Connect) → hero (solid headline, full job line, 2 CTAs) → product screenshot (optional) → logo marquee (real logos only) → **Features** (category FeatureCards) → How it works (steps) → testimonials (real only) → pricing (optional) → FAQ → human footer.  
 **CTA:** product verb → `/desk`. Never Connect on the landing.  
 **Hero type:** solid `text-foreground`. Never `bg-clip-text` fade.  
 **Footer:** brand + two real columns. No ACME newsletter.  
@@ -82,9 +88,13 @@ Then pick **chrome**:
 | Sub-intent | Primary | Secondary | Avoid |
 |------------|---------|-----------|-------|
 | Sidebar app | `Application/sidebars (19)__sidebar*.tsx` (pick one complete App) | `Application/navbars (3)__*.tsx` | Marketing heroes as page body |
-| Settings / profile | `Application/Layouts (2)__*-setting*.tsx` or `Application/cards (20)__security-settings.tsx` | `Application/cards (20)__account-details.tsx`, `cell-wrapper.tsx` | Landing hero |
+| Top navbar app (no sidebar) | `Application/Navigation Headers (5)__App.tsx` + `notifications-card.tsx` | `Navigation Headers (5)__notification-item.tsx` | Sidebar shell forced in |
+| Command menu | `Application/Command Menus (1)__App.tsx` | `Command Menus (1)__popover.tsx` | Assuming cmdk installed - check deps |
+| Settings / profile | `Application/Layouts (2)__account-setting.tsx` + `cards (20)__security-settings.tsx` | `Layouts (2)__billing-setting.tsx`, `appearance-setting.tsx`, `team-setting.tsx`, `team-manage-table.tsx`, `cards (20)__account-details.tsx`, `cell-wrapper.tsx` | `Layouts (2)__App.tsx` (that is a messaging inbox, not settings), landing hero |
 | Notification list | `Application/cards (20)__notification-item.tsx` | `notifications-settings.tsx` | Pricing |
 | Action tiles | `Application/cards (20)__action-card.tsx` | `AI/features (1)__feature-card.tsx` | Tables for 3 items |
+
+Warning: `Application/Layouts (2)__App.tsx` is a **messaging inbox**, not a settings page - never open it for settings (use `Layouts (2)__*-setting.tsx`); it routes under D.messaging_inbox.
 
 **Compose order:** Shell (nav/sidebar) → page title + short lede → content cards/list.  
 **Density:** Medium unless data-heavy (then F).
@@ -99,6 +109,8 @@ Then pick **chrome**:
 | Message bubble only | `AI/prompt-containers (11)__message-card.tsx` | `AI/messages (6)__message-card.tsx` | Checkout |
 | Prompt box | `AI/prompt-inputs (11)__prompt-input*.tsx` | `prompt-containers … prompt-input-with-bottom-actions*.tsx` | Auth form layout |
 | Playground | `AI/playgrounds (1)__App.tsx` | conversation + prompt-input | Pricing |
+| Messaging inbox (human-to-human) | `Application/Layouts (2)__App.tsx` + `messaging-chat-inbox.tsx` + `messaging-chat-window.tsx` | `messaging-chat-message.tsx`, `messaging-chat-input.tsx`, `messaging-chat-profile.tsx` | AI prompt shell |
+| Assistant messages | `AI/messages (6)__App.tsx` + `message-card.tsx` | none | Auth form layout |
 
 **Compose order:** Sidebar (history) optional → messages column → sticky prompt input.  
 **Density:** Dense in thread; sparse empty state.
@@ -110,8 +122,8 @@ Then pick **chrome**:
 | Sub-intent | Primary | Secondary | Avoid |
 |------------|---------|-----------|-------|
 | Product grid | `E-commerce/product-list (9)__products-grid.tsx` + `product-list-item.tsx` | `filters (9)__*.tsx` | AI chat shell |
-| Product detail | `E-commerce/product-view (1)__product-view-item.tsx` | rating radio groups | Sidebars full app |
-| Filters | `E-commerce/filters (9)__filters-wrapper.tsx` | price-slider, tag-group | Auth |
+| Product detail | `E-commerce/product-view (1)__App.tsx` + `product-view-item.tsx` | `color-radio-item.tsx`, `tag-group-radio-item.tsx`, `reviews (6)__summary-rating-card.tsx` | Sidebars full app |
+| Filters | `E-commerce/filters (9)__App.tsx` + `filters-wrapper.tsx` | `price-slider.tsx`, `tag-group-item.tsx` | Auth |
 | Checkout | `E-commerce/checkouts (4)__App.tsx` | payment-form, order-summary, shipping-form | Chat |
 | Reviews | `E-commerce/reviews (6)__reviews.tsx` + `card-review.tsx` | summary-rating-card | none |
 
@@ -141,6 +153,7 @@ Then pick **chrome**:
 | Multi-step form | `Application/forms (1)__*.tsx` (all) | `Application/steppers (7)__*.tsx` | Single huge unsectioned form |
 | Step indicator only | `Application/steppers (7)__*.tsx` | forms folder for fields | none |
 | Calendar booking | `Application/calendar (3)__App.tsx` | booking-form, calendar-time-select | Checkout copy-paste |
+| Feedback / rating | `Application/feedbacks (4)__App.tsx` + `feedback-rating-item.tsx` | none | Long form |
 
 **Compose order:** Stepper → one step card → primary continue.  
 **Density:** Medium; one primary CTA per step.
@@ -242,10 +255,14 @@ Before shipping UI, checklist:
 ```
 What is the main screen?
   marketing / homepage / how it works → A + hero App + FeatureCard; CTA to /desk; no Connect
+  testimonials / logos / team / faq / footer -> A section_router
   login/signup/unlock → B + authentication App.tsx
   logged-in product / desk → C navbar OR H dapp (one Connect in nav, form only)
   chat/AI → D + prompt-containers App.tsx
   shop → E + product-list or checkout App
+  inbox / DMs -> D.messaging_inbox
+  product page -> E.product_detail
+  feedback / rating -> G.feedback_rating
   analytics → F + KPI + graphs
   trading desk / ledger / terminal / console -> F.workstation + workstation_dense
   multi-step → G + forms + steppers

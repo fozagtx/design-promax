@@ -16,8 +16,12 @@ When the user says "landing and dashboard", "homepage and app", "hero + how it w
 | **Two routes** | `/` tells the story. `/desk` does the job. Distinct chrome. |
 | **Landing nav** | HeroUI `Navbar` from `basic-navbar.tsx`. Icon + **name only**. Links: **Features**, How it works, Questions. CTA is the product verb, not Connect. |
 | **Hero** | Clamp 40-64px, bold, tight tracking, **solid** foreground, **`text-balance`**, **no `<br />`**. The **full** locked job line. One lede. Two pills. |
+| **Product screenshot** | Optional, from `hero-sections (4)__app-screenshot.tsx`, directly under the hero. |
+| **Logo marquee** | `scrolling-banners (5)` only with **real** customer logos; otherwise omit or label "Sample logos". |
 | **Features** | `AI/features (1)__App.tsx` pattern: three **category** FeatureCards (what you already did / what it does / what it will not). Required. `#features`. |
 | **How it works** | Three **step** FeatureCards. `#how`. Not a substitute for Features. |
+| **Testimonials** | `scrolling-banners (5)__user-review.tsx`, **real** quotes only; otherwise omit. |
+| **Pricing** | Optional, `Marketing/pricing (8)__App.tsx` when the product has tiers. |
 | **Questions** | Accordion. Three human answers. |
 | **Footer** | Brand + one line + Product / Help. Links include Features. |
 | **Desk nav** | `Application/navbars (3)__App.tsx`. Brand links home. **One** Connect on the right. |

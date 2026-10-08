@@ -36,6 +36,7 @@ for (const surface of Object.values(registry.surfaces || {})) {
   }
 }
 for (const p of Object.values(registry.field_router?.map || {})) check(p);
+for (const p of Object.values(registry.section_router?.map || {})) check(p);
 
 if (existsSync(stylePath)) {
   const style = JSON.parse(readFileSync(stylePath, "utf8"));

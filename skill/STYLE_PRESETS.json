@@ -1,6 +1,6 @@
 {
   "name": "design-promax-style-presets",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Feel/theme presets. Default clean_product = Vault OTP case study. Routing picks surface; style locks quality.",
   "default_preset": "clean_product",
   "case_study": "case-studies/vault-otp.md",
@@ -173,8 +173,27 @@
       "optional_read": [
         "Marketing/footers (4)__App.tsx",
         "Marketing/faqs (4)__App.tsx",
+        "Application/scrolling-banners (5)__App.tsx",
+        "Marketing/hero-sections (4)__app-screenshot.tsx",
         "Marketing/pricing (8)__App.tsx"
       ],
+      "section_recipe": [
+        "navbar (no Connect)",
+        "hero: solid headline full job line + 2 CTAs",
+        "product screenshot (optional)",
+        "logo marquee (only real logos)",
+        "features (3 FeatureCards)",
+        "how it works (3 FeatureCards as steps)",
+        "testimonials (only real quotes)",
+        "pricing (optional)",
+        "faq (Accordion)",
+        "footer (human, 3 to 5 links)"
+      ],
+      "hero_override": "Source headline uses bg-clip-text gradient + <br />. Use text-foreground text-balance, no <br />, clamp(40px,8vw,64px), tracking-tight",
+      "cta_pair": {
+        "primary": "bg-default-foreground text-background radius=\"full\" h-10",
+        "secondary": "variant=\"bordered\" radius=\"full\" border-default-200 with arrow in a rounded-full bg-default-100 circle"
+      },
       "case_study": "case-studies/landing-and-desk.md",
       "compose_recipe": [
         "navbar_brand_name_only_no_connect",
@@ -265,6 +284,7 @@
     "User says like Vault OTP / those cards / those buttons → clean_product + read case-studies/vault-otp.md",
     "Surface H (wallet_dapp) → clean_product or trust_green only (never marketing_campaign)",
     "Surface A landing → marketing_campaign + case-studies/landing-and-desk.md; CTA to /desk; zero Connect on landing",
+    "Surface A section requests (testimonials, logos, team, faq, footer, banner) → section_router entry + marketing_campaign; read that one file plus hero App for spacing",
     "If product has landing AND work surface → two routes; never jam; theme does not collapse the split",
     "Surface D chat → chat_soft (not random purple landing)",
     "Surface F dense → dense_admin",

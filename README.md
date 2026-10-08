@@ -64,7 +64,7 @@ Agents must **not** browse 400+ files at random. They:
 4. Adapt real patterns: action cards, solar icons, radius-full buttons, human copy
 5. **Landing and desk are separate routes** when the product has a homepage and a work surface (`case-studies/landing-and-desk.md`). One Connect, on the desk navbar only.
 
-Wallet/crypto UIs use surface **H** + locked **clean_product** (the Vault OTP card feel). Landing for those products uses surface **A** + `marketing_campaign` — never jammed onto the desk.
+Wallet/crypto UIs use surface **H** + locked **clean_product** (the Vault OTP card feel). Landing for those products uses surface **A** + `marketing_campaign` - never jammed onto the desk.
 
 ```bash
 node scripts/validate-routes.mjs

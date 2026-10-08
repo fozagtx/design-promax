@@ -116,8 +116,10 @@ If the product has a public story and a place to do the work, ship two routes. T
 
 | Route | Style | Job |
 |-------|-------|-----|
-| `/` landing | `marketing_campaign` | Navbar (Features, How it works, Questions, no Connect) -> full job-line hero (`text-balance`, no `<br />`) -> Features -> How it works -> FAQ -> footer. CTA is the product verb to `/desk`. |
+| `/` landing | `marketing_campaign` | Navbar (Features, How it works, Questions, no Connect) -> solid full job-line hero (`text-balance`, no `<br />`) -> product screenshot (optional) -> logo marquee (real logos only) -> Features -> How it works -> testimonials (real only) -> pricing (optional) -> FAQ -> footer. CTA is the product verb to `/desk`. |
 | `/desk` | `clean_product` | Navbar (one Connect) -> the same full job line -> wrong-network only -> form. No features / how-it-works row. |
+
+Landing sections are atoms: pick each from `ROUTE_REGISTRY.json` -> `section_router`. The hero source headline (gradient clip + `<br />`) is a layout reference only; the headline itself is always solid `text-foreground`.
 
 Hard bans in any theme: second Connect; logo subtitle; faded `bg-clip-text` hero; chopped `<br />` leaving three leftover words; desk h1 shortened to a 3-word stub; missing Features (Features is not How it works); engineering chips; fake ACME footer; invented cards.
 
@@ -150,3 +152,4 @@ React 18 + `@heroui/react` v2 (+ `@heroui-pro/react` when available) + Tailwind 
 6. Never invent icons; never claim skill files are missing without checking both path layouts
 7. Never put architecture notes or eng jargon in product UI
 8. DESIGN.md is the contract: write it once, read it every later session
+9. Every route has `adapt` notes and `deps`; read them before opening the file. Settings never route to `Layouts (2)__App.tsx` (that is messaging).

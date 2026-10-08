@@ -138,7 +138,7 @@ All flavors share: **full-radius CTAs, bordered inputs, solar icons, no eng foot
 - Wrong-network as plain text without Switch CTA  
 - Feature wall of 6+ cards  
 - Mixing checkout field chrome with chat shells  
-- **Jamming this desk recipe onto a marketing landing** — if the product also has a homepage, split routes and follow `landing-and-desk.md`  
+- **Jamming this desk recipe onto a marketing landing** - if the product also has a homepage, split routes and follow `landing-and-desk.md`  
 - **A second Connect** under the navbar Connect  
 - **Job subtitle beside the logo**  
 - **Faded gradient-clipped hero type**  

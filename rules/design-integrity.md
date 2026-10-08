@@ -38,7 +38,7 @@ If the product has a public story and a work surface, ship `/` (Navbar + solid f
 Landing has zero Connect. Desk has Connect once, in the navbar, labeled Connect. Wrong network is Switch, not a second Connect. Never duplicate the wallet button.
 
 ## Rule 9: Use the primitives
-Navbar from `basic-navbar.tsx` / `navbars (3)__App.tsx`. Features from `AI/features (1)__App.tsx` + `feature-card.tsx`. How it works from the same FeatureCard as **steps**. Hero size from `hero-sections (4)__App.tsx` with **solid** type (no `bg-clip-text` fade, no chopping `<br />`). Footer from `footers (4)__App.tsx` stripped of ACME newsletter and fake `#` columns. Do not vibe-code substitutes.
+Navbar from `basic-navbar.tsx` / `navbars (3)__App.tsx`. Features from `AI/features (1)__App.tsx` + `feature-card.tsx`. How it works from the same FeatureCard as **steps**. Hero size from `hero-sections (4)__App.tsx` with **solid** type (no `bg-clip-text` fade, no chopping `<br />`). Footer from `footers (4)__App.tsx` stripped of ACME newsletter and fake `#` columns. Social proof from `scrolling-banners (5)` (logo marquee, user-review) only with real logos and quotes. Settings from `Layouts (2)__*-setting.tsx`. Do not vibe-code substitutes.
 
 ## Rule 10: Human chrome
 Logo is icon + name only. No job subtitle beside the mark. No chain-name chips, truncated vault addresses, or Pre-flight in the chrome. Live values that the user must copy live inside the form.

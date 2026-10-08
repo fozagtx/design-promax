@@ -71,6 +71,8 @@ Output a **route plan** (even if only internal):
   "style": "clean_product",
   "files_to_read": ["… max 4 …"],
   "compose_recipe": ["topbar", "hero", "3 action cards", "gate", "content"],
+  "adapt": ["…"],
+  "deps": ["…"],
   "avoid": ["…"]
 }
 ```
