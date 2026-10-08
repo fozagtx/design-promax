@@ -46,6 +46,10 @@ if [ -d "$DEST/skill" ]; then
     mkdir -p "$DEST/templates"
     cp -f "$DEST/skill/templates/"* "$DEST/templates/" 2>/dev/null || true
   fi
+  if [ -d "$DEST/skill/motion" ]; then
+    mkdir -p "$DEST/motion"
+    cp -Rf "$DEST/skill/motion/." "$DEST/motion/" 2>/dev/null || true
+  fi
   # sources: keep nested, also link at root if missing
   if [ ! -e "$DEST/sources" ] && [ -d "$DEST/skill/sources" ]; then
     ln -sfn skill/sources "$DEST/sources"
@@ -54,7 +58,7 @@ fi
 
 # Sanity checks
 missing=0
-for f in SKILL.md THEMES.json themes.css STYLE_PRESETS.json ROUTE_REGISTRY.json REFERENCES.md templates/DESIGN.md case-studies/vault-otp.md; do
+for f in SKILL.md THEMES.json themes.css STYLE_PRESETS.json ROUTE_REGISTRY.json REFERENCES.md templates/DESIGN.md motion/_root.css motion/RARE_UI.md case-studies/vault-otp.md; do
   if [ ! -e "$DEST/$f" ] && [ ! -e "$DEST/skill/$f" ]; then
     echo "  ERROR: missing $f after install"
     missing=1
@@ -74,6 +78,6 @@ echo "  Pro themes     -> THEMES.json + themes.css (ask Default|Brutalism|Glass|
 echo "  clean_product  -> STYLE_PRESETS.json"
 echo "  case study     -> case-studies/vault-otp.md"
 echo "  routes         -> ROUTE_REGISTRY.json"
-echo "  showcase       -> Map navigation · Pro AI chat · Music player · Shopping"
+echo "  showcase       -> Map navigation - Pro AI chat - Music player - Shopping"
 echo ""
 echo "Try: Build a settings page with design-promax - pick a Pro theme first"

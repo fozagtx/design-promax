@@ -8,11 +8,13 @@ description: >-
   case-studies/vault-otp.md. Showcase packs: Map navigation, Pro AI chat,
   Music player, Shopping experience. Saved profile: Burnt Editorial / Cleat look.
   Dense preset: workstation_dense (trading desk, ledger, terminal, ops console).
-  Writes DESIGN.md contract into the project.
+  Writes DESIGN.md contract into the project. Motion layer: transitions.dev
+  tokens + 32 snippets + Rare UI atoms.
   Triggers: design-promax, HeroUI, Brutalism, Glass, Mouve, Burnt Editorial,
   Cleat style, black-white burnt orange, clean_product, Vault OTP, GhostKeys,
   those cards, route UI, trading desk, order ledger, terminal, ops console,
-  workstation, DESIGN.md, design contract, designeer.
+  workstation, DESIGN.md, design contract, designeer, transitions,
+  motion tokens, rare ui, animated counter, otp input, fluid orb.
 ---
 
 # Design ProMax
@@ -35,6 +37,7 @@ Every file below exists in the skill. Check the same folder as SKILL.md first, t
 | `templates/DESIGN.md` | Project design contract template, written to the project root after the theme gate |
 | `REFERENCES.md` | Curated external references (designeer.xyz): galleries, icons, type, color, motion, allowed supplement atoms |
 | `ROUTING.md` | Human router guide |
+| `motion/` | Motion layer: `_root.css` tokens, `transitions/` (32 transitions.dev snippets), `TRANSITIONS.md`, `POLISH.md`, `RARE_UI.md` (Rare UI atoms, one per screen) |
 | `sources/` | Real HeroUI Pro code (read-only) |
 
 If any of these are missing the install is stale: re-run `./install.sh` from https://github.com/fozagtx/design-promax. Do not invent them.
@@ -82,6 +85,7 @@ Rules:
    Showcase: prefer source_hints from THEMES.json showcase_packs
 5. Apply button_matrix + compose_recipe from clean_product,
    then adapt radii / shadows / accent to the locked theme (Brutalism is not pill-everything)
+5b. Motion: copy motion/_root.css once; pick 1 to 3 moments for the screen from ROUTE_REGISTRY motion_router (by_surface); optional one Rare UI atom from motion/RARE_UI.md allowed-by-surface table
 6. User already has brand colors: keep them unless theme is Mouve / Brutalism and they asked for the full Pro look
 7. Human copy only. No eng footnotes. No em dashes.
 ```
@@ -153,3 +157,4 @@ React 18 + `@heroui/react` v2 (+ `@heroui-pro/react` when available) + Tailwind 
 7. Never put architecture notes or eng jargon in product UI
 8. DESIGN.md is the contract: write it once, read it every later session
 9. Every route has `adapt` notes and `deps`; read them before opening the file. Settings never route to `Layouts (2)__App.tsx` (that is messaging).
+10. Motion comes from motion/ (transitions.dev tokens + snippets). Cap 3 transitions and 1 Rare UI atom per screen; never strip prefers-reduced-motion.

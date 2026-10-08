@@ -53,13 +53,15 @@ Rule: any custom primary must pass APCA Lc 60 for body text on its background.
 | NumberFlow (number-flow.barvian.me) | Rolling KPI numbers |
 | Morphrig / morphicons | Icon morphing, only if the user asks |
 
+transitions.dev snippets are local at `motion/transitions/`; polish rules at `motion/POLISH.md`.
+
 ## Supplement components (allowed atoms only)
 
 | Package | Atom |
 |---------|------|
 | NumberFlow | Rolling numbers |
 | Motion Primitives | Text and reveal effects on a landing hero |
-| Rare UI | OTP input, animated counter, scroll progress |
+| Rare UI | Catalog is local at `motion/RARE_UI.md` (OTP input, animated counter, scroll progress) |
 | Evil Charts | Animated charts if the Recharts stock look is rejected |
 
 Rule: one supplement max per screen; it must adopt HeroUI tokens (`bg-content1`, `text-default-500`) so it does not look pasted in.

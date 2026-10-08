@@ -42,6 +42,12 @@ check "skill/case-studies/burnt-editorial.md" "skill/case-studies/burnt-editoria
 check "skill/case-studies/workstation-dense.md" "skill/case-studies/workstation-dense.md"
 check "skill/templates/DESIGN.md" "skill/templates/DESIGN.md"
 check "skill/REFERENCES.md" "skill/REFERENCES.md"
+check "skill/motion/_root.css" "skill/motion/_root.css"
+check "skill/motion/TRANSITIONS.md" "skill/motion/TRANSITIONS.md"
+check "skill/motion/RARE_UI.md" "skill/motion/RARE_UI.md"
+check "skill/motion/POLISH.md" "skill/motion/POLISH.md"
+check "skill/motion/transitions/01-card-resize.md" "skill/motion/transitions/01-card-resize.md"
+check "skill/motion/transitions/32-banner-stacking.md" "skill/motion/transitions/32-banner-stacking.md"
 check "skill/sources/" "skill/sources"
 check "scripts/validate-routes.mjs" "scripts/validate-routes.mjs"
 

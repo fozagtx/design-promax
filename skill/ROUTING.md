@@ -15,7 +15,7 @@ If JSON and this doc disagree, **JSON wins**.
 
 Pick **exactly one** primary surface (what the user spends time looking at):
 
-| Code | Surface | If user says… |
+| Code | Surface | If user says... |
 |------|---------|----------------|
 | **A** | Marketing / landing | landing, homepage, hero, pricing, FAQ, waitlist, marketing |
 | **B** | Auth | login, signup, sign in, register, forgot password |
@@ -44,7 +44,7 @@ Then pick **chrome**:
 
 ---
 
-## Step 1 - Intent → best template pack (read these first)
+## Step 1 - Intent -> best template pack (read these first)
 
 ### A - Marketing / landing
 
@@ -61,8 +61,8 @@ Then pick **chrome**:
 
 Note: `hero-sections (4)__App.tsx` headline is the banned gradient + `<br />` pattern: copy the layout, replace the headline with solid `text-foreground` + `text-balance`.
 
-**Compose order (section_recipe):** navbar (no Connect) → hero (solid headline, full job line, 2 CTAs) → product screenshot (optional) → logo marquee (real logos only) → **Features** (category FeatureCards) → How it works (steps) → testimonials (real only) → pricing (optional) → FAQ → human footer.  
-**CTA:** product verb → `/desk`. Never Connect on the landing.  
+**Compose order (section_recipe):** navbar (no Connect) -> hero (solid headline, full job line, 2 CTAs) -> product screenshot (optional) -> logo marquee (real logos only) -> **Features** (category FeatureCards) -> How it works (steps) -> testimonials (real only) -> pricing (optional) -> FAQ -> human footer.  
+**CTA:** product verb -> `/desk`. Never Connect on the landing.  
 **Hero type:** solid `text-foreground`. Never `bg-clip-text` fade.  
 **Footer:** brand + two real columns. No ACME newsletter.  
 **If the product also has work:** also ship `/desk` using surface H/C. Read `case-studies/landing-and-desk.md`.  
@@ -77,7 +77,7 @@ Note: `hero-sections (4)__App.tsx` headline is the banned gradient + `<br />` pa
 | Login / signup | `Application/authentication (24)__App.tsx` | `Application/authentication (24)__acme.tsx` (logo) | Sidebars, tables |
 | Centered gate (unlock, connect) | Same auth App shell pattern | `Application/cards (20)__action-card.tsx` for helper tips | Marketing footers full of links |
 
-**Compose order:** Logo/title → `bg-content1 rounded-large shadow-small` form card → primary CTA full width → optional OR divider.  
+**Compose order:** Logo/title -> `bg-content1 rounded-large shadow-small` form card -> primary CTA full width -> optional OR divider.  
 **Density:** Focused chrome.  
 **Do not** put contract addresses or eng jargon on auth screens.
 
@@ -96,7 +96,7 @@ Note: `hero-sections (4)__App.tsx` headline is the banned gradient + `<br />` pa
 
 Warning: `Application/Layouts (2)__App.tsx` is a **messaging inbox**, not a settings page - never open it for settings (use `Layouts (2)__*-setting.tsx`); it routes under D.messaging_inbox.
 
-**Compose order:** Shell (nav/sidebar) → page title + short lede → content cards/list.  
+**Compose order:** Shell (nav/sidebar) -> page title + short lede -> content cards/list.  
 **Density:** Medium unless data-heavy (then F).
 
 ---
@@ -107,12 +107,12 @@ Warning: `Application/Layouts (2)__App.tsx` is a **messaging inbox**, not a sett
 |------------|---------|-----------|-------|
 | Full chat app | `AI/prompt-containers (11)__App.tsx` | `conversation.tsx`, `message-card.tsx`, `prompt-input*.tsx`, `sidebar*.tsx` | Marketing heroes |
 | Message bubble only | `AI/prompt-containers (11)__message-card.tsx` | `AI/messages (6)__message-card.tsx` | Checkout |
-| Prompt box | `AI/prompt-inputs (11)__prompt-input*.tsx` | `prompt-containers … prompt-input-with-bottom-actions*.tsx` | Auth form layout |
+| Prompt box | `AI/prompt-inputs (11)__prompt-input*.tsx` | `prompt-containers ... prompt-input-with-bottom-actions*.tsx` | Auth form layout |
 | Playground | `AI/playgrounds (1)__App.tsx` | conversation + prompt-input | Pricing |
 | Messaging inbox (human-to-human) | `Application/Layouts (2)__App.tsx` + `messaging-chat-inbox.tsx` + `messaging-chat-window.tsx` | `messaging-chat-message.tsx`, `messaging-chat-input.tsx`, `messaging-chat-profile.tsx` | AI prompt shell |
 | Assistant messages | `AI/messages (6)__App.tsx` + `message-card.tsx` | none | Auth form layout |
 
-**Compose order:** Sidebar (history) optional → messages column → sticky prompt input.  
+**Compose order:** Sidebar (history) optional -> messages column -> sticky prompt input.  
 **Density:** Dense in thread; sparse empty state.
 
 ---
@@ -141,7 +141,7 @@ Warning: `Application/Layouts (2)__App.tsx` is a **messaging inbox**, not a sett
 | Data table | `Application/tables (1)__*.tsx` | Command Menus for search | Feature cards only |
 | Workstation (ledger + inspector) | `Application/tables (1)__App.tsx` + `Charts/KPI-stats (9)__App.tsx` | `Application/sidebars (19)__App.tsx`, `Application/cards (20)__notification-item.tsx` | Hero, action cards, pills |
 
-**Compose order:** KPI row → chart → table.  
+**Compose order:** KPI row -> chart -> table.  
 **Density:** Dense; keep cards `shadow-small border-default-200`.
 
 ---
@@ -155,7 +155,7 @@ Warning: `Application/Layouts (2)__App.tsx` is a **messaging inbox**, not a sett
 | Calendar booking | `Application/calendar (3)__App.tsx` | booking-form, calendar-time-select | Checkout copy-paste |
 | Feedback / rating | `Application/feedbacks (4)__App.tsx` + `feedback-rating-item.tsx` | none | Long form |
 
-**Compose order:** Stepper → one step card → primary continue.  
+**Compose order:** Stepper -> one step card -> primary continue.  
 **Density:** Medium; one primary CTA per step.
 
 ---
@@ -245,7 +245,7 @@ Before shipping UI, checklist:
 8. **Copy:** human product language; no architecture footnotes  
 9. **States:** empty / loading / error / wrong-network each have a card  
 10. **One primary CTA** per viewport region  
-11. **Landing ≠ desk** when both exist; **one Connect** on the desk navbar only  
+11. **Landing != desk** when both exist; **one Connect** on the desk navbar only  
 12. **Solid hero type**; logo is icon + name only  
 
 ---
@@ -254,20 +254,20 @@ Before shipping UI, checklist:
 
 ```
 What is the main screen?
-  marketing / homepage / how it works → A + hero App + FeatureCard; CTA to /desk; no Connect
+  marketing / homepage / how it works -> A + hero App + FeatureCard; CTA to /desk; no Connect
   testimonials / logos / team / faq / footer -> A section_router
-  login/signup/unlock → B + authentication App.tsx
-  logged-in product / desk → C navbar OR H dapp (one Connect in nav, form only)
-  chat/AI → D + prompt-containers App.tsx
-  shop → E + product-list or checkout App
+  login/signup/unlock -> B + authentication App.tsx
+  logged-in product / desk -> C navbar OR H dapp (one Connect in nav, form only)
+  chat/AI -> D + prompt-containers App.tsx
+  shop -> E + product-list or checkout App
   inbox / DMs -> D.messaging_inbox
   product page -> E.product_detail
   feedback / rating -> G.feedback_rating
-  analytics → F + KPI + graphs
+  analytics -> F + KPI + graphs
   trading desk / ledger / terminal / console -> F.workstation + workstation_dense
-  multi-step → G + forms + steppers
-  wallet/crypto dapp → H compose (navbar + form; landing is a separate A route)
-Then: open ONLY the Primary files → adapt → stop.
+  multi-step -> G + forms + steppers
+  wallet/crypto dapp -> H compose (navbar + form; landing is a separate A route)
+Then: open ONLY the Primary files -> adapt -> stop.
 If the product has a story AND a tool: two routes. Read landing-and-desk.md.
 ```
 

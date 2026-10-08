@@ -4,7 +4,7 @@
 
 | Failure mode | Cause | Fix |
 |--------------|--------|-----|
-| Agent opens 20 random source files | Flat lookup table + huge FILE_INDEX | **Route registry** → max 5 merged reads |
+| Agent opens 20 random source files | Flat lookup table + huge FILE_INDEX | **Route registry** -> max 5 merged reads |
 | UI looks random across projects | No shared "feel" | **STYLE_PRESETS** default `clean_product` |
 | Wrong Pro aesthetic | Silent Default | **THEMES.json** gate - ask Default/Brutalism/Glass/Mouve |
 | Wrong template for the product | Keyword match only on category (AI/App/Marketing) | **Surface A-H** + **route id** |
@@ -16,23 +16,25 @@
 ## Layers
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  SKILL.md          Trigger + short protocol (always)    │
-├─────────────────────────────────────────────────────────┤
-│  THEMES.json           Pro theme gate (Default/Brutalism│
-│                        /Glass/Mouve) + showcase packs   │
-│  ROUTE_REGISTRY.json   Machine routes (what)             │
-│  STYLE_PRESETS.json    Compose feel - clean_product     │
-│  ROUTING.md            Human narrative / examples       │
-│  ARCHITECTURE.md       This file - harness contract     │
-│  templates/DESIGN.md   Project design contract template │
-│  REFERENCES.md         Curated external references      │
-│  case-studies/         Canonical recipes                │
-├─────────────────────────────────────────────────────────┤
-│  sources/**            Real HeroUI Pro code (read-only) │
-├─────────────────────────────────────────────────────────┤
-│  rules/              Integrity rules                     │
-└─────────────────────────────────────────────────────────┘
++---------------------------------------------------------+
+|  SKILL.md          Trigger + short protocol (always)    |
++---------------------------------------------------------+
+|  THEMES.json           Pro theme gate (Default/Brutalism|
+|                        /Glass/Mouve) + showcase packs   |
+|  ROUTE_REGISTRY.json   Machine routes (what)             |
+|  STYLE_PRESETS.json    Compose feel - clean_product     |
+|  ROUTING.md            Human narrative / examples       |
+|  ARCHITECTURE.md       This file - harness contract     |
+|  templates/DESIGN.md   Project design contract template |
+|  REFERENCES.md         Curated external references      |
+|  case-studies/         Canonical recipes                |
+|  motion/               transitions.dev tokens+snippets, |
+|                        POLISH, RARE_UI atoms            |
++---------------------------------------------------------+
+|  sources/**            Real HeroUI Pro code (read-only) |
++---------------------------------------------------------+
+|  rules/              Integrity rules                     |
++---------------------------------------------------------+
 ```
 
 ## Harness contract (any agent runtime)
@@ -43,23 +45,23 @@ On UI work, load:
 
 0. If project has DESIGN.md from this skill, read it and skip the theme gate.
 1. `skill/SKILL.md` (or installed copy of SKILL.md)
-2. **Ask Pro theme** (Default · Brutalism · Glass · Mouve) unless already named → load `THEMES.json`
+2. **Ask Pro theme** (Default - Brutalism - Glass - Mouve) unless already named -> load `THEMES.json`
 3. `skill/ROUTE_REGISTRY.json`
 
 Do **not** start by listing all of `sources/`.
 
 **Also load** `STYLE_PRESETS.json`. Default compose = **`clean_product`** (Vault OTP cards).
 Merge route primaries with `style.must_read` (cap 5). Surface **H** locks clean_product.
-See STYLE_PRESETS `compose_recipe` for the topbar → action cards → gate → content order.
+See STYLE_PRESETS `compose_recipe` for the topbar -> action cards -> gate -> content order.
 Apply locked Pro theme (`data-theme` + CSS import or `oss_approx`).
 
 ### 2. Classify
 
 ```
 user_utterance
-  → keyword_index match (first hit wins)
-  → OR classify surface A-H from surfaces.*.keywords
-  → pick default route under that surface if multi-route
+  -> keyword_index match (first hit wins)
+  -> OR classify surface A-H from surfaces.*.keywords
+  -> pick default route under that surface if multi-route
 ```
 
 Output a **route plan** (even if only internal):
@@ -69,17 +71,17 @@ Output a **route plan** (even if only internal):
   "surface": "H",
   "route": "vault_or_dapp_shell",
   "style": "clean_product",
-  "files_to_read": ["… max 4 …"],
+  "files_to_read": ["... max 4 ..."],
   "compose_recipe": ["topbar", "hero", "3 action cards", "gate", "content"],
-  "adapt": ["…"],
-  "deps": ["…"],
-  "avoid": ["…"]
+  "adapt": ["..."],
+  "deps": ["..."],
+  "avoid": ["..."]
 }
 ```
 
 ### 3. Read
 
-- Merge `route.primary` ∪ `style.must_read` (dedupe, prefer `.tsx`)
+- Merge `route.primary` + `style.must_read` (dedupe, prefer `.tsx`)
 - Cap at **4** files
 - Open `secondary` only if still missing an atom
 
@@ -121,6 +123,7 @@ design-promax/
     case-studies/
     templates/DESIGN.md
     REFERENCES.md
+    motion/
     sources/
 ```
 

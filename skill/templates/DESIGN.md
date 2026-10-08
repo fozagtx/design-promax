@@ -34,9 +34,12 @@ Design contract for this project. Written by design-promax. Agents read this fir
 - Every list / table / form has empty, loading, error states as cards or rows (never a blank area)
 
 ## Motion
+- Tokens: motion/_root.css copied to {path}; reference var(--duration-*), var(--ease-*), var(--distance-*)
 - hover {motion.hover}; enter {motion.enter}; exit {motion.exit}; press {motion.press}
 - Open is slower than close. Respect prefers-reduced-motion ({motion.reduced_motion}).
 - Rolling numbers: NumberFlow or framer-motion animate on KPI changes, 300ms max
+- Moments on this project: {list from motion_router, cap 3 per screen}
+- Rare UI atoms allowed here: {list or none}
 
 ## Copy
 - Human product language. No eng jargon (ciphertext, calldata, RPC) in UI.

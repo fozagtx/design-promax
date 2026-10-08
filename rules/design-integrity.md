@@ -47,10 +47,13 @@ Logo is icon + name only. No job subtitle beside the mark. No chain-name chips, 
 If the product has a locked job line, paste it whole on landing **and** desk. Use `text-balance`. Never `<br />` so the second line is three leftover words. Never shorten the desk h1 to the last three words.
 
 ## Rule 12: Features is not How it works
-Landing compose is hero → Features (`AI/features (1)__App.tsx` category cards) → How it works (steps) → FAQ → footer. Nav includes Features. Skipping Features is a fail.
+Landing compose is hero -> Features (`AI/features (1)__App.tsx` category cards) -> How it works (steps) -> FAQ -> footer. Nav includes Features. Skipping Features is a fail.
 
 ## Rule 13: DESIGN.md is the contract
 Write it after the theme gate from templates/DESIGN.md; read it on later sessions; never re-ask the theme while it exists.
 
 ## Rule 14: Dense surfaces
 workstation_dense: font-mono tabular-nums on numbers, units on values, fixed status vocabulary, kill switch visible, size sm, radius sm, no pills, no hero.
+
+## Rule 15: Motion
+Tokens from motion/_root.css; moments from motion_router; cap 3 per screen; keep reduced-motion guards; one Rare UI atom per screen restyled with HeroUI tokens.

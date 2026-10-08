@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "design-promax-route-registry",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Machine-readable template router + style presets. Paths relative to skill/sources/. Always apply default style preset after routing.",
   "protocol": {
     "before_write_ui": [
@@ -12,6 +12,7 @@
       "efficient_merge_core_plus_one_shell",
       "read_merged_files_cap_4",
       "apply_button_matrix_and_compose_recipe",
+      "pick_motion_from_motion_router_cap_3",
       "apply_quality_bar_and_case_study_if_clean_product"
     ],
     "max_primary_reads": 4,
@@ -210,7 +211,12 @@
           ]
         }
       },
-      "style_preset": "marketing_campaign"
+      "style_preset": "marketing_campaign",
+      "motion_default": [
+        "hero_text_reveal",
+        "learn_more_arrow",
+        "accordion_faq"
+      ]
     },
     "B": {
       "id": "auth",
@@ -270,7 +276,12 @@
           ]
         }
       },
-      "style_preset": "clean_product"
+      "style_preset": "clean_product",
+      "motion_default": [
+        "form_error",
+        "success_confirmation",
+        "input_clear"
+      ]
     },
     "C": {
       "id": "app_shell",
@@ -389,7 +400,14 @@
           ]
         }
       },
-      "style_preset": "clean_product"
+      "style_preset": "clean_product",
+      "motion_default": [
+        "dropdown_open",
+        "modal_open_close",
+        "toast",
+        "badge_unread",
+        "toggle"
+      ]
     },
     "D": {
       "id": "chat_ai",
@@ -500,7 +518,13 @@
           ]
         }
       },
-      "style_preset": "clean_product"
+      "style_preset": "clean_product",
+      "motion_default": [
+        "ai_thinking_state",
+        "ai_streaming_text",
+        "ai_reasoning_stream",
+        "skeleton_to_content"
+      ]
     },
     "E": {
       "id": "commerce",
@@ -612,7 +636,13 @@
           ]
         }
       },
-      "style_preset": "clean_product"
+      "style_preset": "clean_product",
+      "motion_default": [
+        "number_update",
+        "like_button",
+        "toast",
+        "list_to_detail"
+      ]
     },
     "F": {
       "id": "data_charts",
@@ -722,7 +752,13 @@
           ]
         }
       },
-      "style_preset": "dense_admin"
+      "style_preset": "dense_admin",
+      "motion_default": [
+        "number_update",
+        "skeleton_to_content",
+        "status_text_swap",
+        "side_panel_reveal"
+      ]
     },
     "G": {
       "id": "forms_wizards",
@@ -796,7 +832,13 @@
           ]
         }
       },
-      "style_preset": "clean_product"
+      "style_preset": "clean_product",
+      "motion_default": [
+        "tabs_segmented",
+        "checkbox",
+        "success_confirmation",
+        "form_error"
+      ]
     },
     "H": {
       "id": "wallet_dapp",
@@ -853,7 +895,12 @@
         }
       },
       "style_preset": "clean_product",
-      "style_locked": true
+      "style_locked": true,
+      "motion_default": [
+        "success_confirmation",
+        "form_error",
+        "number_update"
+      ]
     }
   },
   "field_router": {
@@ -894,7 +941,8 @@
     "Hero headline is solid text-foreground with text-balance; the hero-sections source headline (gradient clip + <br />) is a layout reference only",
     "Social proof only when real: real logos / real quotes, else omit or label 'Sample'",
     "Settings pages route to Layouts (2)__*-setting.tsx, never to Layouts (2)__App.tsx (messaging)",
-    "Every route lists non-stack deps; never assume cmdk / lodash / usehooks-ts are installed"
+    "Every route lists non-stack deps; never assume cmdk / lodash / usehooks-ts are installed",
+    "Motion: copy motion/_root.css once, pick moments from motion_router (cap 3 per screen), keep prefers-reduced-motion guards, open slower than close"
   ],
   "keyword_index": {
     "landing": "A.landing",
@@ -1031,5 +1079,96 @@
       "footer": "Marketing/footers (4)__App.tsx",
       "cookie_consent": "Marketing/cookie-consents (8)__App.tsx"
     }
+  },
+  "motion_router": {
+    "description": "UI moment -> transitions.dev snippet in motion/transitions/. Cap 3 transitions per screen. Every snippet ships a prefers-reduced-motion guard; keep it.",
+    "root_css": "motion/_root.css",
+    "map": {
+      "number_update": "motion/transitions/02-number-pop-in.md",
+      "kpi_rolling_counter": "motion/transitions/26-spinning-counter.md",
+      "badge_unread": "motion/transitions/03-notification-badge.md",
+      "status_text_swap": "motion/transitions/04-text-states-swap.md",
+      "dropdown_open": "motion/transitions/05-menu-dropdown.md",
+      "modal_open_close": "motion/transitions/06-modal.md",
+      "side_panel_reveal": "motion/transitions/07-panel-reveal.md",
+      "list_to_detail": "motion/transitions/08-page-side-by-side.md",
+      "icon_swap": "motion/transitions/09-icon-swap.md",
+      "success_confirmation": "motion/transitions/10-success-check.md",
+      "avatar_row_hover": "motion/transitions/11-avatar-group-hover.md",
+      "form_error": "motion/transitions/12-error-state-shake.md",
+      "input_clear": "motion/transitions/13-input-clear-dissolve.md",
+      "skeleton_to_content": "motion/transitions/14-skeleton-reveal.md",
+      "shimmer_loading_text": "motion/transitions/15-shimmer-text.md",
+      "tabs_segmented": "motion/transitions/16-tabs-sliding.md",
+      "tooltip": "motion/transitions/17-tooltip.md",
+      "hero_text_reveal": "motion/transitions/18-texts-reveal.md",
+      "card_hover_tilt": "motion/transitions/19-card-tilt.md",
+      "fab_to_menu": "motion/transitions/20-plus-menu-morph.md",
+      "accordion_faq": "motion/transitions/21-accordion.md",
+      "toast": "motion/transitions/22-toast.md",
+      "like_button": "motion/transitions/23-like-button.md",
+      "learn_more_arrow": "motion/transitions/24-learn-more-hover.md",
+      "checkbox": "motion/transitions/25-checkbox-check.md",
+      "toggle": "motion/transitions/27-toggle.md",
+      "ai_thinking_state": "motion/transitions/28-thinking-states.md",
+      "ai_reasoning_stream": "motion/transitions/29-reasoning-stream.md",
+      "ai_streaming_text": "motion/transitions/30-streaming-text.md",
+      "dot_matrix_loader": "motion/transitions/31-matrix-loader.md",
+      "banner_stack": "motion/transitions/32-banner-stacking.md",
+      "container_resize": "motion/transitions/01-card-resize.md"
+    },
+    "by_surface": {
+      "A": [
+        "hero_text_reveal",
+        "learn_more_arrow",
+        "accordion_faq"
+      ],
+      "B": [
+        "form_error",
+        "success_confirmation",
+        "input_clear"
+      ],
+      "C": [
+        "dropdown_open",
+        "modal_open_close",
+        "toast",
+        "badge_unread",
+        "toggle"
+      ],
+      "D": [
+        "ai_thinking_state",
+        "ai_streaming_text",
+        "ai_reasoning_stream",
+        "skeleton_to_content"
+      ],
+      "E": [
+        "number_update",
+        "like_button",
+        "toast",
+        "list_to_detail"
+      ],
+      "F": [
+        "number_update",
+        "skeleton_to_content",
+        "status_text_swap",
+        "side_panel_reveal"
+      ],
+      "G": [
+        "tabs_segmented",
+        "checkbox",
+        "success_confirmation",
+        "form_error"
+      ],
+      "H": [
+        "success_confirmation",
+        "form_error",
+        "number_update"
+      ]
+    },
+    "bans": [
+      "card_hover_tilt on dense surfaces (F, workstation_dense)",
+      "hero_text_reveal anywhere except the landing hero",
+      "more than one loader style per screen"
+    ]
   }
 }

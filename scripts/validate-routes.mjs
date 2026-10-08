@@ -38,6 +38,22 @@ for (const surface of Object.values(registry.surfaces || {})) {
 for (const p of Object.values(registry.field_router?.map || {})) check(p);
 for (const p of Object.values(registry.section_router?.map || {})) check(p);
 
+// Motion router paths live relative to skill/ (not skill/sources)
+const skillRoot = join(root, "skill");
+const checkedMotion = new Set();
+function checkSkill(rel, missing) {
+  if (!rel || checkedMotion.has(rel)) return;
+  checkedMotion.add(rel);
+  if (!existsSync(join(skillRoot, rel))) missing.push(rel);
+}
+const motionMissing = [];
+if (registry.motion_router) {
+  checkSkill(registry.motion_router.root_css, motionMissing);
+  for (const p of Object.values(registry.motion_router.map || {})) checkSkill(p, motionMissing);
+}
+for (const p of ["motion/RARE_UI.md", "motion/TRANSITIONS.md", "motion/POLISH.md"]) checkSkill(p, motionMissing);
+console.log(`Checked ${checkedMotion.size} motion paths under skill/`);
+
 if (existsSync(stylePath)) {
   const style = JSON.parse(readFileSync(stylePath, "utf8"));
   for (const preset of Object.values(style.presets || {})) {
@@ -52,9 +68,10 @@ if (existsSync(stylePath)) {
 console.log(`Design ProMax route validation (registry v${registry.version})`);
 console.log(`Checked ${checked.size} unique paths under skill/sources/`);
 
-if (missing.length) {
+if (missing.length || motionMissing.length) {
   console.error("MISSING:");
   for (const m of missing) console.error("  -", m);
+  for (const m of motionMissing) console.error("  - (motion)", m);
   process.exit(1);
 }
 

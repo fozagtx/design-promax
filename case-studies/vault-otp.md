@@ -5,7 +5,7 @@
 **Style:** `clean_product` (locked)  
 **Repo (example):** Monad Vault OTP - Astro + React + HeroUI v2 + Iconify Solar  
 
-When the user says "like Vault OTP", "those cards", "that button feel", or "same style as before" → **replay this case study**, not a random marketing theme.
+When the user says "like Vault OTP", "those cards", "that button feel", or "same style as before" -> **replay this case study**, not a random marketing theme.
 
 ---
 
@@ -15,7 +15,7 @@ When the user says "like Vault OTP", "those cards", "that button feel", or "same
 |-------|-------------|
 | **Layout** | `max-w-3xl mx-auto`, vertical `gap-6`, airy page padding |
 | **Top bar** | One card-like bar: icon tile + name + wallet controls |
-| **Hero** | Chips → one headline → one lede (no paragraphs of tech) |
+| **Hero** | Chips -> one headline -> one lede (no paragraphs of tech) |
 | **Features** | Exactly **3** ActionCards, grid on sm |
 | **Gates** | Connect / wrong network / unlock each = **one Card + one primary Button** |
 | **Work** | Form Card + stacked content Cards (not raw lists) |
@@ -31,12 +31,12 @@ When the user says "like Vault OTP", "those cards", "that button feel", or "same
 | Role | HeroUI props | Example label |
 |------|----------------|---------------|
 | **Primary CTA** | `color="primary" radius="full"` + optional `startContent` bold solar icon | Connect wallet, Sign to unlock, Encrypt & store |
-| **Primary loading** | same + `isLoading` - drop startContent while loading | Confirm in wallet… |
+| **Primary loading** | same + `isLoading` - drop startContent while loading | Confirm in wallet... |
 | **Secondary** | `variant="bordered" radius="full" size="sm"` + linear icon | Copy, Refresh |
 | **Danger** | `color="danger" variant="flat" radius="full" size="sm"` + trash linear | Delete |
 | **Warning action** | `color="warning" radius="full"` or `variant="flat"` | Switch network |
 | **Ghost / light** | `variant="light" radius="full" size="sm"` | Disconnect |
-| **Icon-leading** | Always `startContent={<Icon icon="solar:…" width={16\|18} />}` | none |
+| **Icon-leading** | Always `startContent={<Icon icon="solar:..." width={16\|18} />}` | none |
 
 **Rules:**
 - Prefer **full pills** (`radius="full"`) over default medium radius for product CTAs  
@@ -71,7 +71,7 @@ When the user says "like Vault OTP", "those cards", "that button feel", or "same
 | Small actions | `*-linear` | copy-linear, trash-bin-trash-linear, refresh-linear |
 | Alerts | bold | danger-triangle-bold, danger-circle-bold, transfer-horizontal-bold |
 
-Source library: `@iconify/react` → https://icon-sets.iconify.design/solar/
+Source library: `@iconify/react` -> https://icon-sets.iconify.design/solar/
 
 ---
 
@@ -118,7 +118,7 @@ Fonts: **IBM Plex Sans** + **IBM Plex Mono** for codes/addresses.
 
 ## Flavors of the same family
 
-| Flavor id | When | Differs from vault by… |
+| Flavor id | When | Differs from vault by... |
 |-----------|------|-------------------------|
 | `clean_product` | Default product / dapp / vault | This case study |
 | `clean_product_compact` | Mobile-first / dense phone UI | Tighter gap-4, hide feature row |

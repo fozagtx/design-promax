@@ -2,10 +2,10 @@
 
 **Status:** Canonical when a product has a public story **and** a work surface.  
 **Surfaces:** A (`marketing` / landing) **and** H or C (desk / dashboard)  
-**Styles:** `marketing_campaign` on `/` · `clean_product` on `/desk`  
+**Styles:** `marketing_campaign` on `/` - `clean_product` on `/desk`  
 **Theme:** Any (Default, Brutalism, Glass, Mouve, or product palette). Theme retokens. It does not collapse the split.
 
-When the user says "landing and dashboard", "homepage and app", "hero + how it works + the actual tool", or hates a jammed one-pager → **replay this**, not Vault OTP stacked on a marketing page.
+When the user says "landing and dashboard", "homepage and app", "hero + how it works + the actual tool", or hates a jammed one-pager -> **replay this**, not Vault OTP stacked on a marketing page.
 
 ---
 
@@ -79,7 +79,7 @@ From `Marketing/footers (4)__App.tsx` take the layout (brand block + columns + b
 ## Desk compose (when a landing exists)
 
 ```
-1. Navbar (icon + name → `/`, Connect once)
+1. Navbar (icon + name -> `/`, Connect once)
 2. The same full job line as the landing (`text-balance`, no `<br />`)
 3. Wrong-network card only if connected on the wrong chain
 4. Form card if unlocked

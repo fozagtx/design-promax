@@ -215,7 +215,7 @@ Motion explains state and sequence.
 
 - Logo: quick drop, slight turn, settle on each route visit
 - Bento: animate selection, sealing, and answer states
-- Existing product mockup may cycle through sealed → checking → answer
+- Existing product mockup may cycle through sealed -> checking -> answer
 - Smooth scrolling: Lenis with anchor offset
 - Animate only `transform` and `opacity`
 - Use spring-like or smooth custom cubic-bezier curves
